@@ -1,535 +1,80 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>For Nelian ♡</title>
-
-    <!-- Confetti animation library -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Message</title>
     <style>
-        /* =========================
-           1. GENERAL RESET
-        ========================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
-        /* =========================
-           2. BODY AND BACKGROUND
-        ========================= */
         body {
             min-height: 100vh;
-            display: grid;
-            place-items: center;
-            overflow: hidden;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
-            font-family: 'DM Sans', sans-serif;
-
-            background:
-                radial-gradient(circle at 15% 20%, #ffe2ed 0, transparent 35%),
-                radial-gradient(circle at 85% 80%, #dfd2ff 0, transparent 35%),
-                linear-gradient(135deg, #fff1f5, #f4eaff, #ffe7ef);
+            position: relative;
         }
 
-        /* Background glow decorations */
-        .glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: .45;
-            pointer-events: none;
-        }
-
-        .glow.one {
-            background: #ff9fc5;
-            top: -100px;
-            left: -100px;
-        }
-
-        .glow.two {
-            background: #bba5ff;
-            bottom: -100px;
-            right: -100px;
-        }
-
-        /* =========================
-           3. FLOATING HEARTS
-        ========================= */
-        .heart {
-            position: fixed;
-            bottom: -40px;
-            pointer-events: none;
-            animation: floatUp linear forwards;
-            opacity: .65;
+        /* Dark overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
             z-index: 0;
         }
 
-        @keyframes floatUp {
-            to {
-                transform: translateY(-110vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* =========================
-           4. MAIN CARD DESIGN
-        ========================= */
-        .container {
-            width: 100%;
-            max-width: 410px;
-            position: relative;
-            z-index: 2;
-        }
-
         .card {
-            padding: 38px 28px;
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.92);
+            width: 100%;
+            max-width: 360px;
+            border-radius: 24px;
+            padding: 30px 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
             text-align: center;
-            border: 1px solid rgba(255,255,255,.85);
-            border-radius: 32px;
-            background: rgba(255,255,255,.66);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            box-shadow: 0 25px 80px rgba(160,90,140,.15);
-            animation: appear .8s ease;
+
+            /* Animation */
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
         }
 
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(.96);
-            }
-
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: scale(1) translateY(0);
             }
         }
 
-        /* =========================
-           5. INTRO SCREEN
-        ========================= */
-        .envelope {
-            font-size: 75px;
-            display: inline-block;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 10px 12px #ff9fca70);
-            animation: floating 2.5s ease-in-out infinite;
+        .voice-label {
+            font-size: 16px;
+            color: #be123c;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
-        @keyframes floating {
-            50% {
-                transform: translateY(-12px) rotate(5deg);
-            }
-        }
-
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 35px;
-            color: #a94d7b;
-            margin-bottom: 12px;
-        }
-
-        .main-btn {
+        audio {
             width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 18px;
-            color: white;
-            font-size: 14px;
-            font-weight: 700;
-            background: linear-gradient(120deg, #e88bb5, #b88ce8);
-            box-shadow: 0 10px 25px #d48dbb55;
-            cursor: pointer;
-            transition: .3s;
-        }
-
-        .main-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 30px #d48dbb80;
-        }
-
-        /* =========================
-           6. SECOND SCREEN
-        ========================= */
-        #letter {
-            display: none;
-        }
-
-        .question {
-            font-family: 'Playfair Display', serif;
-            font-size: 34px;
-            line-height: 1.3;
-            color: #a94d7b;
-            margin: 12px 0;
-        }
-
-        .small-heart {
-            color: #e88bb5;
-            font-size: 22px;
-            margin-bottom: 25px;
-        }
-
-        /* YES and NO button container */
-        .buttons {
-            position: relative;
-            height: 130px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 25px;
-        }
-
-        /* YES button */
-        .yes {
-            position: relative;
-            background: linear-gradient(120deg, #e88bb5, #bd8ce8);
-            color: white;
-            box-shadow: 0 8px 20px #d48dbb55;
-            border: none;
-            padding: 14px 35px;
-            border-radius: 18px;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            z-index: 1;
-            transition: .2s;
-        }
-
-        .yes:hover {
-            transform: scale(1.1);
-        }
-
-        /* NO button */
-        .no {
-            position: absolute;
-            background: white;
-            color: #ad83a0;
-            padding: 14px 30px;
-            border-radius: 18px;
-            border: 1px solid #f0d5e5;
-            font-weight: bold;
-            font-size: 15px;
-            cursor: pointer;
-            z-index: 5;
-            transition: left .15s, top .15s;
-        }
-
-        /* =========================
-           7. THIRD SCREEN / SUCCESS
-        ========================= */
-        #success {
-            display: none;
-            animation: appear .6s ease;
-        }
-
-        .success-heart {
-            font-size: 65px;
-            margin: 20px 0;
-            animation: floating 1.5s infinite;
-        }
-
-        .success-title {
-            font-family: 'Playfair Display', serif;
-            color: #b44e82;
-            font-size: 32px;
-        }
-
-        .success-text {
-            color: #ad83a0;
-            font-size: 14px;
-            margin-top: 12px;
-        }
-
-        /* =========================
-           8. FOOTER
-        ========================= */
-        .footer {
-            font-size: 11px;
-            color: #bd9caf;
-            margin-top: 28px;
-            letter-spacing: 2px;
-        }
-
-        /* =========================
-           9. RESPONSIVE DESIGN
-        ========================= */
-        @media (max-width: 380px) {
-            .card {
-                padding: 30px 18px;
-            }
-
-            h1, .question {
-                font-size: 29px;
-            }
-
-            .buttons {
-                height: 140px;
-            }
         }
     </style>
 </head>
-
 <body>
-
-    <!-- Background decorations -->
-    <div class="glow one"></div>
-    <div class="glow two"></div>
-
-    <div class="container">
-
-        <!-- =========================
-             FIRST SCREEN: INTRO
-        ========================= -->
-        <section class="card" id="intro">
-
-            <div class="envelope">💌</div>
-
-            <h1>BEBE ko</h1>
-
-            <button class="main-btn" onclick="openLetter()">
-                Open muna po hehe ♡
-            </button>
-
-        </section>
-
-
-        <!-- =========================
-             SECOND SCREEN: QUESTION
-        ========================= -->
-        <section class="card" id="letter">
-
-            <!-- Second-screen content -->
-            <div id="questionScreen">
-
-                <h1>BEBE ko</h1>
-
-                <div class="question">
-                    Mahal mo ba ako?
-                </div>
-
-                <div class="small-heart">♡</div>
-
-                <!-- YES and NO buttons -->
-                <div class="buttons" id="buttons">
-
-                    <button class="yes" onclick="sayYes()">
-                        YES ♡
-                    </button>
-
-                    <button class="no" id="noBtn">
-                        NO
-                    </button>
-
-                </div>
-
-                <div class="footer">♡</div>
-
-            </div>
-
-
-            <!-- =========================
-                 THIRD SCREEN: SUCCESS
-            ========================= -->
-            <div id="success">
-
-                <div class="success-heart">💗</div>
-
-                <div class="success-title">
-                    mwaa
-                </div>
-
-                <p class="success-text">
-                    I love you too so much, BEBE ko ♡
-                </p>
-
-            </div>
-
-        </section>
-
+    <div class="card">
+        <div class="voice-label">Pakinggan mo mensahe ko sayu bebe😘</div>
+        <audio controls>
+            <source src="voice.mp3" type="audio/mpeg">
+            Hindi supported ang audio.
+        </audio>
     </div>
-
-
-    <script>
-        /* =========================
-           1. FLOATING HEARTS
-        ========================= */
-
-        const symbols = ["♡", "💕", "🌸", "💗", "✧"];
-
-        // Create a random floating heart every 500ms
-        setInterval(() => {
-
-            const heart = document.createElement("div");
-
-            heart.className = "heart";
-
-            heart.textContent =
-                symbols[Math.floor(Math.random() * symbols.length)];
-
-            heart.style.left = Math.random() * 100 + "vw";
-
-            heart.style.fontSize =
-                (15 + Math.random() * 22) + "px";
-
-            heart.style.animationDuration =
-                (5 + Math.random() * 5) + "s";
-
-            document.body.appendChild(heart);
-
-            // Remove the heart after its animation
-            setTimeout(() => heart.remove(), 10000);
-
-        }, 500);
-
-
-        /* =========================
-           2. OPEN SECOND SCREEN
-        ========================= */
-
-        function openLetter() {
-
-            // Hide the first screen
-            document.getElementById("intro").style.display = "none";
-
-            // Show the second screen
-            document.getElementById("letter").style.display = "block";
-
-            // Intro confetti
-            confetti({
-                particleCount: 80,
-                spread: 80,
-                origin: { y: .6 },
-                colors: ["#ff9fc5", "#d5a6ff", "#ffffff"]
-            });
-
-        }
-
-
-        /* =========================
-           3. NO BUTTON ESCAPE
-        ========================= */
-
-        const noBtn = document.getElementById("noBtn");
-        const buttonArea = document.getElementById("buttons");
-
-        function escapeButton(e) {
-
-            // Prevent default touch behavior
-            if (e) e.preventDefault();
-
-            const areaRect = buttonArea.getBoundingClientRect();
-            const yesBtn = document.querySelector(".yes");
-            const yesRect = yesBtn.getBoundingClientRect();
-
-            const maxX = buttonArea.clientWidth - noBtn.offsetWidth;
-            const maxY = buttonArea.clientHeight - noBtn.offsetHeight;
-
-            let randomX;
-            let randomY;
-            let overlaps;
-            let attempts = 0;
-
-            // Find a position that does not overlap the YES button
-            do {
-
-                randomX = Math.random() * Math.max(0, maxX);
-                randomY = Math.random() * Math.max(0, maxY);
-
-                const noLeft = areaRect.left + randomX;
-                const noTop = areaRect.top + randomY;
-
-                overlaps =
-                    noLeft < yesRect.right &&
-                    noLeft + noBtn.offsetWidth > yesRect.left &&
-                    noTop < yesRect.bottom &&
-                    noTop + noBtn.offsetHeight > yesRect.top;
-
-                attempts++;
-
-            } while (overlaps && attempts < 100);
-
-            // Apply the new position
-            noBtn.style.left = randomX + "px";
-            noBtn.style.top = randomY + "px";
-
-        }
-
-        // Desktop: escape when mouse approaches
-        noBtn.addEventListener("mouseenter", escapeButton);
-
-        // Mobile: escape when touched
-        noBtn.addEventListener("touchstart", escapeButton, {
-            passive: false
-        });
-
-        // Escape when clicked
-        noBtn.addEventListener("click", escapeButton);
-
-
-        /* =========================
-           4. YES BUTTON CELEBRATION
-        ========================= */
-
-        function sayYes() {
-
-            // Hide all second-screen content
-            document.getElementById("questionScreen").style.display = "none";
-
-            // Show only the third-screen content
-            document.getElementById("success").style.display = "block";
-
-            // Main confetti celebration
-            confetti({
-                particleCount: 200,
-                spread: 150,
-                origin: { y: .6 },
-                colors: ["#ff80ab", "#e6b8ff", "#ffffff", "#ff4f91"]
-            });
-
-            // Continue fireworks for 3 seconds
-            const end = Date.now() + 3000;
-
-            (function fireworks() {
-
-                // Left-side fireworks
-                confetti({
-                    particleCount: 5,
-                    angle: 60,
-                    spread: 55,
-                    origin: { x: 0 },
-                    colors: ["#ff80ab", "#d5a6ff"]
-                });
-
-                // Right-side fireworks
-                confetti({
-                    particleCount: 5,
-                    angle: 120,
-                    spread: 55,
-                    origin: { x: 1 },
-                    colors: ["#ff80ab", "#d5a6ff"]
-                });
-
-                // Repeat until celebration ends
-                if (Date.now() < end) {
-                    requestAnimationFrame(fireworks);
-                }
-
-            })();
-
-        }
-
-    </script>
-
 </body>
 </html>

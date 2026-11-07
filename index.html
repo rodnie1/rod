@@ -243,7 +243,6 @@ button:active {
         <button class="right" onclick="changeDirection('RIGHT')">➡️</button>
     </div>
 
-    <p class="small-text">Use arrow keys, WASD, or the buttons to move.</p>
     <button class="secondary" onclick="restartGame()">RESTART ↻</button>
 </section>
 
@@ -256,7 +255,7 @@ button:active {
     <button onclick="startGame()">PLAY AGAIN ❤️</button>
 </section>
 
-<!-- UNLOCK SCREEN -->
+<!-- UNLOCK SCREEN (kept as backup) -->
 <section class="screen" id="unlockScreen">
     <div class="heart">🎉</div>
     <h1>You Did It!</h1>
@@ -293,10 +292,10 @@ button:active {
 // GAME SETTINGS
 // =====================================
 
-const TARGET_SCORE = 40;
+const TARGET_SCORE = 4;
 const CELL_SIZE = 20;
 const GRID_SIZE = 18;
-const GAME_SPEED = 115;
+const GAME_SPEED = 150;
 
 // =====================================
 // ELEMENTS
@@ -315,16 +314,13 @@ const videoFallback = document.getElementById("videoFallback");
 // VIDEO DOWNLOAD RESTRICTIONS
 // =====================================
 
-// Hide download option in supported browsers
 surpriseVideo.setAttribute(
     "controlsList",
     "nodownload noremoteplayback"
 );
 
-// Disable Picture-in-Picture
 surpriseVideo.disablePictureInPicture = true;
 
-// Disable right-click menu on the video
 surpriseVideo.addEventListener("contextmenu", event => {
     event.preventDefault();
 });
@@ -390,19 +386,19 @@ function playTone(
 }
 
 // =====================================
-// START SOUND
+// LOUDER START SOUND
 // =====================================
 
 function startSound() {
-    playTone(440, 0.12, 0.10, "sine", 660);
+    playTone(440, 0.12, 0.18, "sine", 660);
 
     setTimeout(() => {
-        playTone(660, 0.16, 0.10, "sine", 880);
+        playTone(660, 0.16, 0.18, "sine", 880);
     }, 120);
 }
 
 // =====================================
-// CRUNCHY APPLE SOUND
+// LOUDER CRUNCHY APPLE SOUND
 // =====================================
 
 function eatSound() {
@@ -440,7 +436,7 @@ function eatSound() {
     filter.Q.value = 0.8;
 
     const gain = audioContext.createGain();
-    gain.gain.setValueAtTime(0.24, now);
+    gain.gain.setValueAtTime(0.38, now);
     gain.gain.exponentialRampToValueAtTime(
         0.001,
         now + duration
@@ -452,20 +448,20 @@ function eatSound() {
 
     source.start(now);
 
-    // Extra crunchy crackles
-    playTone(950, 0.045, 0.035, "square", 250);
+    // Louder crunchy crackles
+    playTone(950, 0.045, 0.07, "square", 250);
 
     setTimeout(() => {
-        playTone(700, 0.05, 0.035, "square", 180);
+        playTone(700, 0.05, 0.07, "square", 180);
     }, 55);
 
     setTimeout(() => {
-        playTone(1100, 0.04, 0.025, "square", 350);
+        playTone(1100, 0.04, 0.055, "square", 350);
     }, 100);
 }
 
 // =====================================
-// LOUDER INTENSE HEARTBEAT AND SUSPENSE
+// LOUDER HEARTBEAT AND SUSPENSE
 // =====================================
 
 function startTensionSound() {
@@ -488,47 +484,47 @@ function scheduleTensionBeat() {
         480 - progress * 260
     );
 
-    // Louder heartbeat
     const bassFrequency = 65 + progress * 30;
 
+    // First heartbeat
     playTone(
         bassFrequency,
         0.11,
-        0.12,
+        0.38,
         "sine",
         bassFrequency * 0.65
     );
 
-    // Second heartbeat pulse
+    // Second heartbeat
     setTimeout(() => {
         if (gameRunning) {
             playTone(
                 bassFrequency * 1.25,
                 0.09,
-                0.10,
+                0.32,
                 "sine",
                 bassFrequency * 0.75
             );
         }
     }, 100);
 
-    // Louder suspense accent
+    // Suspense accent
     if (tensionBeat % 3 === 0) {
         playTone(
             420 + progress * 380,
             0.13,
-            0.07,
+            0.22,
             "triangle",
             250 + progress * 200
         );
     }
 
-    // Extra high-pitched warning when close to winning
+    // Warning sound when close to winning
     if (score >= 30 && tensionBeat % 2 === 0) {
         playTone(
             900 + progress * 300,
             0.08,
-            0.045,
+            0.18,
             "sine",
             500
         );
@@ -548,30 +544,30 @@ function stopTensionSound() {
 }
 
 // =====================================
-// GAME OVER AND VICTORY SOUNDS
+// LOUDER GAME OVER AND VICTORY SOUNDS
 // =====================================
 
 function gameOverSound() {
-    playTone(350, 0.25, 0.12, "sawtooth", 150);
+    playTone(350, 0.25, 0.18, "sawtooth", 150);
 
     setTimeout(() => {
-        playTone(180, 0.35, 0.09, "sawtooth", 65);
+        playTone(180, 0.35, 0.15, "sawtooth", 65);
     }, 180);
 }
 
 function victorySound() {
-    playTone(523, 0.15, 0.12, "sine");
+    playTone(523, 0.15, 0.18, "sine");
 
     setTimeout(() => {
-        playTone(659, 0.15, 0.12, "sine");
+        playTone(659, 0.15, 0.18, "sine");
     }, 150);
 
     setTimeout(() => {
-        playTone(784, 0.20, 0.12, "sine");
+        playTone(784, 0.20, 0.18, "sine");
     }, 300);
 
     setTimeout(() => {
-        playTone(1046, 0.35, 0.12, "sine");
+        playTone(1046, 0.35, 0.18, "sine");
     }, 500);
 }
 
@@ -620,7 +616,12 @@ function restartGame() {
     stopTensionSound();
 
     surpriseVideo.pause();
-    surpriseVideo.currentTime = 0;
+
+    try {
+        surpriseVideo.currentTime = 0;
+    } catch (error) {
+        console.log("Video reset:", error);
+    }
 
     snake = [
         { x: 5, y: 9 },
@@ -812,7 +813,7 @@ function endGame() {
 }
 
 // =====================================
-// WIN GAME
+// WIN GAME - AUTOMATIC VIDEO
 // =====================================
 
 function winGame() {
@@ -823,7 +824,10 @@ function winGame() {
 
     victorySound();
 
-    showScreen("unlockScreen");
+    // Automatically start the surprise video
+    setTimeout(() => {
+        playSurpriseVideo();
+    }, 600);
 }
 
 // =====================================
@@ -921,7 +925,12 @@ function playSurpriseVideo() {
     videoFallback.style.display = "none";
 
     surpriseVideo.pause();
-    surpriseVideo.currentTime = 0;
+
+    try {
+        surpriseVideo.currentTime = 0;
+    } catch (error) {
+        console.log("Video reset:", error);
+    }
 
     surpriseVideo.play().catch(error => {
         console.log("Video playback needs a manual click:", error);
@@ -930,18 +939,25 @@ function playSurpriseVideo() {
 }
 
 // =====================================
-// VIDEO ENDS
+// VIDEO ENDS - RETURN TO START
 // =====================================
 
 surpriseVideo.addEventListener("ended", () => {
     surpriseVideo.pause();
-    surpriseVideo.currentTime = 0;
 
-    setTimeout(() => {
-        showScreen("startScreen");
-    }, 1000);
+    try {
+        surpriseVideo.currentTime = 0;
+    } catch (error) {
+        console.log("Video reset:", error);
+    }
+
+    videoFallback.style.display = "none";
+
+    // Immediately return to the starting screen
+    showScreen("startScreen");
 });
 
+// Show fallback if video cannot load
 surpriseVideo.addEventListener("error", () => {
     videoFallback.style.display = "block";
 });

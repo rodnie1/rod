@@ -219,7 +219,7 @@ button:active {
     <div class="heart">💗</div>
     <h1>Hi, Nelian!</h1>
     <p>I prepared a little game for you.</p>
-    <p class="small-text">Collect 40 apples to unlock your surprise!</p>
+    <p class="small-text">Collect 10 apples to unlock your surprise!</p>
     <button onclick="startGame()">START GAME ✨</button>
 </section>
 
@@ -228,7 +228,7 @@ button:active {
     <h2>🍎 Snake Game</h2>
 
     <div class="game-info">
-        <span>🍓 Apples: <span id="score">0</span> / 40</span>
+        <span>🍓 Apples: <span id="score">0</span> / 10</span>
         <span>🐍 Let's play!</span>
     </div>
 
@@ -259,7 +259,7 @@ button:active {
 <section class="screen" id="unlockScreen">
     <div class="heart">🎉</div>
     <h1>You Did It!</h1>
-    <p>You collected all 40 apples!</p>
+    <p>You collected all 10 apples!</p>
     <p>Your surprise is ready. 💗</p>
     <button onclick="playSurpriseVideo()">PLAY MY SURPRISE 💕</button>
 </section>
@@ -292,7 +292,7 @@ button:active {
 // GAME SETTINGS
 // =====================================
 
-const TARGET_SCORE = 40;
+const TARGET_SCORE = 10;
 const CELL_SIZE = 20;
 const GRID_SIZE = 18;
 const GAME_SPEED = 250;
@@ -530,7 +530,7 @@ function scheduleTensionBeat() {
     }
 
     // Extra warning when close to winning
-    if (score >= 30 && tensionBeat % 2 === 0) {
+    if (score >= 7 && tensionBeat % 2 === 0) {
         playTone(
             1000 + progress * 400,
             0.10,

@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f6">
+<title>Memories | Nelian 💗</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #f477ad;
+    --soft: #fff0f6;
+    --bg: #f8f7fa;
+    --text: #35313c;
+    --muted: #99939e;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* TOP BAR - SAME AS HOME */
+
+.topbar {
+    height: 62px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px #00000008;
+}
+
+.logo {
+    color: var(--pink);
+    font-size: 21px;
+    font-weight: bold;
+}
+
+/* MAIN LAYOUT - SAME AS HOME */
+
+.container {
+    max-width: 1050px;
+    margin: 25px auto;
+    padding: 0 18px;
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 20px;
+}
+
+/* SIDEBAR */
+
+.left-column {
+    min-width: 0;
+}
+
+.profile {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    height: fit-content;
+}
+
+.profile img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--soft);
+}
+
+.profile h3 {
+    margin: 10px 0 5px;
+}
+
+.small {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* SIDEBAR NAVIGATION - SAME AS HOME */
+
+.menu {
+    background: white;
+    padding: 12px;
+    border-radius: 18px;
+    margin-top: 15px;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #555;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: var(--soft);
+    color: var(--pink);
+}
+
+/* MAIN CONTENT */
+
+.content-card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    min-height: 550px;
+    box-shadow: 0 3px 15px #00000008;
+    display: flex;
+    flex-direction: column;
+}
+
+.notice {
+    flex: 1;
+    min-height: 480px;
+    background: linear-gradient(135deg, #fff0f6, #ffe0ed, #fff7fa);
+    border: 1px solid #f8d7e6;
+    border-radius: 18px;
+    padding: 35px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.notice-icon {
+    font-size: 65px;
+    margin-bottom: 20px;
+}
+
+.status {
+    background: var(--pink);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+}
+
+.notice h1 {
+    color: #d94d8b;
+    font-size: 29px;
+    margin-bottom: 15px;
+}
+
+.notice p {
+    color: #8d6075;
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 420px;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 25px;
+    background: var(--pink);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.back-home:hover {
+    background: #e65d99;
+}
+
+.signature {
+    text-align: center;
+    margin-top: 22px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* MOBILE NAVIGATION */
+
+.bottom-nav {
+    display: none;
+}
+
+/* MOBILE RESPONSIVE - SAME AS HOME */
+
+@media(max-width: 700px) {
+
+    .topbar {
+        height: 58px;
+        padding: 0 15px;
+    }
+
+    .container {
+        display: block;
+        margin: 15px auto 85px;
+        padding: 0 12px;
+    }
+
+    .left-column {
+        display: none;
+    }
+
+    .content-card {
+        padding: 12px;
+        min-height: 550px;
+    }
+
+    .notice {
+        min-height: 500px;
+        padding: 25px 15px;
+    }
+
+    .notice h1 {
+        font-size: 24px;
+    }
+
+    .notice p {
+        font-size: 13px;
+    }
+
+    /* BOTTOM NAVIGATION - MATCH HOME EXACTLY */
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: white;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -3px 15px #00000010;
+        z-index: 9999;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .bottom-nav a {
+        flex: 1;
+        text-decoration: none;
+        color: #999;
+        font-size: 11px;
+        text-align: center;
+        padding: 8px 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .bottom-nav span {
+        display: block;
+        font-size: 21px;
+        margin-bottom: 3px;
+    }
+
+    .bottom-nav a.active {
+        color: var(--pink);
+        font-weight: bold;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="logo">♡ Nelian</div>
+</header>
+
+<div class="container">
+
+    <aside class="left-column">
+
+        <div class="profile">
+            <img src="../images/cutepic.jpg" alt="Nelian">
+            <h3>Nelian ♡</h3>
+            <p class="small">My favorite person</p>
+        </div>
+
+        <nav class="menu">
+            <a href="../index.html">🏠 Home</a>
+            <a href="../games/index.html">🎮 Games</a>
+            <a href="../messenger/chat.html">💬 Messages</a>
+            <a class="active" href="index.html">📸 Memories</a>
+        </nav>
+
+    </aside>
+
+    <main class="content-card">
+
+        <section class="notice">
+
+            <div class="notice-icon">🌸</div>
+
+            <div class="status">ON HOLD</div>
+
+            <h1>Temporarily Unavailable</h1>
+
+            <p>
+                Oops! This section is currently unavailable.
+                <br>
+                I'm still working on this feature.
+                <br><br>
+                Please come back again soon.
+                Something special is waiting for you here! 💗
+            </p>
+
+            <a href="../index.html" class="back-home">
+                Back to Home ♡
+            </a>
+
+        </section>
+
+        <div class="signature">
+            Made with love, just for you. ♡<br>
+            — Rodnie
+        </div>
+
+    </main>
+
+</div>
+
+<!-- MOBILE BOTTOM NAVIGATION -->
+
+<nav class="bottom-nav">
+
+    <a href="../index.html">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="../games/index.html">
+        <span>🎮</span>
+        Games
+    </a>
+
+    <a href="../messenger/chat.html">
+        <span>💬</span>
+        Chat
+    </a>
+
+    <a class="active" href="index.html">
+        <span>♡</span>
+        Memories
+    </a>
+
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,1402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f6">
+<title>Our Chat 💗</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #f477ad;
+    --soft: #fff0f6;
+    --bg: #f8f7fa;
+    --text: #35313c;
+    --muted: #99939e;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.topbar {
+    height: 62px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px #00000008;
+}
+
+.logo {
+    color: var(--pink);
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 25px auto;
+    padding: 0 18px;
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 20px;
+}
+
+.left-column {
+    min-width: 0;
+}
+
+.sidebar,
+.chat-card {
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 3px 15px #00000008;
+}
+
+.sidebar {
+    padding: 20px;
+    height: fit-content;
+}
+
+.profile {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f2edf0;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--soft);
+}
+
+.profile h3 {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.profile p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+.menu {
+    background: white;
+    padding: 12px;
+    border-radius: 18px;
+    margin-top: 15px;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #555;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: background-color .2s, color .2s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: var(--soft);
+    color: var(--pink);
+}
+
+/* CHAT CARD */
+
+.chat-card {
+    overflow: hidden;
+    min-height: 680px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #f1edf0;
+}
+
+.chat-header .avatar {
+    width: 45px;
+    height: 45px;
+}
+
+.chat-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-info h3 {
+    font-size: 15px;
+}
+
+.chat-info p {
+    color: #38b879;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.header-heart {
+    color: var(--pink);
+    font-size: 23px;
+}
+
+.logout-btn {
+    border: none;
+    background: var(--soft);
+    color: var(--pink);
+    padding: 9px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* LOGIN */
+
+.login-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 370px;
+    text-align: center;
+}
+
+.login-icon {
+    font-size: 55px;
+    margin-bottom: 12px;
+}
+
+.login-box h2 {
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.login-box p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border: 1px solid #eee5eb;
+    border-radius: 12px;
+    outline: none;
+    font-size: 14px;
+}
+
+.login-box input:focus {
+    border-color: var(--pink);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--pink);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary-btn:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.status {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+/* MESSAGES */
+
+.chat-body {
+    flex: 1;
+    padding: 25px 20px;
+    overflow-y: auto;
+    min-height: 470px;
+    max-height: 540px;
+    background: linear-gradient(#fff, #fff9fc);
+}
+
+.date-label {
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 20px;
+}
+
+.load-area {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.load-btn {
+    border: none;
+    background: var(--soft);
+    color: var(--pink);
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.load-btn:disabled {
+    opacity: .5;
+    cursor: wait;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 17px;
+    max-width: 78%;
+}
+
+.message.received {
+    align-items: flex-start;
+}
+
+.message.sent {
+    align-items: flex-end;
+    margin-left: auto;
+}
+
+.bubble {
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.received .bubble {
+    background: #f2f0f3;
+    border-bottom-left-radius: 5px;
+}
+
+.sent .bubble {
+    background: var(--pink);
+    color: white;
+    border-bottom-right-radius: 5px;
+}
+
+.message small {
+    color: var(--muted);
+    font-size: 10px;
+    margin: 5px 5px 0;
+}
+
+.message-status {
+    font-size: 10px;
+    color: var(--muted);
+    margin: 4px 5px 0;
+}
+
+.message-status.seen {
+    color: #2698e8;
+    font-weight: bold;
+}
+
+.empty-chat {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 70px;
+    line-height: 1.7;
+}
+
+/* INPUT */
+
+.chat-input-area {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #f1edf0;
+    background: white;
+}
+
+.chat-input-area input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: #f7f5f7;
+    border-radius: 25px;
+    padding: 13px 17px;
+    font-size: 14px;
+}
+
+.send-btn {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--pink);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.send-btn:disabled {
+    opacity: .5;
+    cursor: wait;
+}
+
+.connection-status {
+    text-align: center;
+    padding: 7px;
+    font-size: 11px;
+    color: var(--muted);
+    background: #fffafd;
+    border-top: 1px solid #f7eff3;
+}
+
+.bottom-nav {
+    display: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+    .topbar {
+        height: 58px;
+        padding: 0 15px;
+    }
+
+    .container {
+        display: block;
+        margin: 15px auto 85px;
+        padding: 0 12px;
+    }
+
+    .left-column {
+        display: none;
+    }
+
+    .chat-card {
+        min-height: calc(100dvh - 155px);
+        border-radius: 13px;
+    }
+
+    .chat-body {
+        min-height: 0;
+        flex: 1;
+        max-height: none;
+        padding: 20px 13px;
+    }
+
+    .message {
+        max-width: 88%;
+    }
+
+    .chat-header {
+        padding: 13px;
+    }
+
+    .chat-input-area {
+        padding: 10px;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: white;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -3px 15px #00000010;
+        z-index: 9999;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .bottom-nav a {
+        flex: 1;
+        text-decoration: none;
+        color: #999;
+        font-size: 11px;
+        text-align: center;
+        padding: 8px 0;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .bottom-nav span {
+        display: block;
+        font-size: 21px;
+        margin-bottom: 3px;
+    }
+
+    .bottom-nav a.active {
+        color: var(--pink);
+        font-weight: bold;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="logo">♡ Nelian</div>
+</header>
+
+<div class="container">
+
+    <aside class="left-column">
+        <div class="sidebar">
+
+            <div class="profile">
+                <img
+                    class="avatar"
+                    src="../images/cutepic.jpg"
+                    alt="Profile"
+                >
+
+                <h3>Nelian ♡</h3>
+                <p>Your special little world</p>
+            </div>
+
+            <nav class="menu">
+                <a href="../index.html">🏠 Home</a>
+                <a href="../games/index.html">🎮 Games</a>
+                <a class="active" href="chat.html">💬 Messages</a>
+                <a href="../memories/index.html">📸 Memories</a>
+            </nav>
+
+        </div>
+    </aside>
+
+    <main class="chat-card">
+
+        <!-- LOGIN SCREEN -->
+
+        <section id="loginArea" class="login-area">
+
+            <form id="loginForm" class="login-box">
+
+                <div class="login-icon">💗</div>
+
+                <h2>Our Little Chat</h2>
+
+                <p>
+                    A private little place just for Rodnie and Nelian.
+                    Sign in to enter our conversation. ♡
+                </p>
+
+                <input
+                    type="email"
+                    id="emailInput"
+                    placeholder="Your email address"
+                    autocomplete="username"
+                    required
+                >
+
+                <input
+                    type="password"
+                    id="passwordInput"
+                    placeholder="Your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit" class="primary-btn" id="loginBtn">
+                    Enter Our Chat 💕
+                </button>
+
+                <div class="status" id="loginStatus">
+                    Only our two accounts can enter.
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- CHAT SCREEN -->
+
+        <section id="chatArea" class="hidden"
+            style="flex:1; flex-direction:column; min-height:0;">
+
+            <div class="chat-header">
+
+                <!-- THIS IS THE ACTUAL CHAT HEADER IMAGE -->
+                <img
+    class="avatar"
+    id="chatAvatar"
+    src="../images/nel.jpg"
+    alt="Chat profile"
+    onerror="this.src='../images/cutepic.jpg'; console.log('Profile picture not found! Check images folder and filename.');"
+>
+
+                <div class="chat-info">
+                    <h3 id="chatTitle">Our Chat 💗</h3>
+                    <p id="onlineStatus">● Connecting...</p>
+                </div>
+
+                <button class="logout-btn" id="logoutBtn">
+                    Logout
+                </button>
+
+            </div>
+
+            <div class="chat-body" id="chatBody">
+
+                <div class="date-label">
+                    A little conversation between us ♡
+                </div>
+
+                <div class="load-area">
+                    <button class="load-btn" id="loadOlderBtn">
+                        Load older messages
+                    </button>
+                </div>
+
+                <div id="messages"></div>
+
+            </div>
+
+            <div class="connection-status" id="connectionStatus">
+                Connecting to our little world...
+            </div>
+
+            <form class="chat-input-area" id="chatForm">
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Write something sweet..."
+                    autocomplete="off"
+                    required
+                >
+
+                <button class="send-btn" id="sendBtn" type="submit">
+                    ➤
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- MOBILE NAVIGATION -->
+
+<nav class="bottom-nav">
+
+    <a href="../index.html">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="../games/index.html">
+        <span>🎮</span>
+        Games
+    </a>
+
+    <a class="active" href="chat.html">
+        <span>💬</span>
+        Chat
+    </a>
+
+    <a href="../memories/index.html">
+        <span>♡</span>
+        Memories
+    </a>
+
+</nav>
+
+<script type="module">
+
+// FIREBASE IMPORTS
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {
+    getDatabase,
+    ref,
+    push,
+    set,
+    query,
+    orderByChild,
+    limitToLast,
+    endAt,
+    get,
+    onChildAdded,
+    onValue
+}
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+
+
+// FIREBASE CONFIGURATION
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAVd9A7JmPReIibkvVVZY8n49RLoX42Q78",
+    authDomain: "rodnie-and-nelian-chat.firebaseapp.com",
+    databaseURL: "https://rodnie-and-nelian-chat-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "rodnie-and-nelian-chat",
+    storageBucket: "rodnie-and-nelian-chat.firebasestorage.app",
+    messagingSenderId: "887404308542",
+    appId: "1:887404308542:web:3d11950febe81f4179096f",
+    measurementId: "G-FLBFDLYBF9"
+};
+
+
+// AUTHORIZED USERS
+
+const RODNIE_UID = "wCLxThY1P1W7sQNxCnpCD1mxB8i1";
+const NELIAN_UID = "7YToaU3EIxglcKUd4nYDEPj9Rnx2";
+
+
+// INITIALIZE FIREBASE
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase(app);
+
+
+// ELEMENTS
+
+const loginArea = document.getElementById("loginArea");
+const loginForm = document.getElementById("loginForm");
+const loginBtn = document.getElementById("loginBtn");
+const loginStatus = document.getElementById("loginStatus");
+
+const chatArea = document.getElementById("chatArea");
+const chatBody = document.getElementById("chatBody");
+const messagesContainer = document.getElementById("messages");
+
+const chatForm = document.getElementById("chatForm");
+const messageInput = document.getElementById("messageInput");
+const sendBtn = document.getElementById("sendBtn");
+
+const logoutBtn = document.getElementById("logoutBtn");
+const loadOlderBtn = document.getElementById("loadOlderBtn");
+
+const onlineStatus = document.getElementById("onlineStatus");
+const connectionStatus = document.getElementById("connectionStatus");
+const chatTitle = document.getElementById("chatTitle");
+const chatAvatar = document.getElementById("chatAvatar");
+
+
+// VARIABLES
+
+const messagesRef = ref(database, "messages");
+
+let currentUser = null;
+let oldestTimestamp = null;
+let loadingOlder = false;
+let hasOlderMessages = true;
+let unsubscribeMessages = null;
+
+let displayedMessageIds = new Set();
+let receiptUnsubscribers = [];
+let incomingMessages = new Map();
+
+const PAGE_SIZE = 50;
+
+
+// ACCOUNT NAMES
+
+function getSenderName(uid) {
+    if (uid === RODNIE_UID) return "Rodnie";
+    if (uid === NELIAN_UID) return "Nelian";
+    return "Unknown";
+}
+
+
+// UPDATE CHAT PARTNER PROFILE
+
+function updateChatProfile(uid) {
+
+    if (uid === RODNIE_UID) {
+
+        // Rodnie sees Nelian's photo and nickname
+        chatTitle.textContent = "Bebe ko 💗";
+        chatAvatar.src = "../images/nel.jpg";
+        chatAvatar.alt = "Nelian";
+
+    } else if (uid === NELIAN_UID) {
+
+        // Nelian sees Rodnie's photo and nickname
+        chatTitle.textContent = "Sanggol ko 💗";
+        chatAvatar.src = "../images/rod.jpg";
+        chatAvatar.alt = "Rodnie";
+
+    }
+
+}
+
+
+// HELPER FUNCTIONS
+
+function getOtherUserUid() {
+    if (!currentUser) return null;
+
+    return currentUser.uid === RODNIE_UID
+        ? NELIAN_UID
+        : RODNIE_UID;
+}
+
+function formatTime(timestamp) {
+    return new Date(timestamp).toLocaleString([], {
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+function scrollToBottom() {
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function clearReceiptListeners() {
+    receiptUnsubscribers.forEach(function(unsubscribe) {
+        unsubscribe();
+    });
+
+    receiptUnsubscribers = [];
+}
+
+function showError(error) {
+    console.error(error);
+
+    const messages = {
+        "auth/invalid-credential": "Incorrect email or password.",
+        "auth/invalid-email": "Please enter a valid email address.",
+        "auth/too-many-requests": "Too many attempts. Please try again later.",
+        "auth/network-request-failed": "Please check your internet connection.",
+        "auth/unauthorized-domain": "This website domain is not authorized in Firebase.",
+        "auth/user-disabled": "This account has been disabled."
+    };
+
+    return messages[error.code] || error.message || "Something went wrong.";
+}
+
+
+// DELIVERY RECEIPTS
+
+async function markDelivered(message) {
+
+    if (!currentUser || message.senderUid === currentUser.uid) {
+        return;
+    }
+
+    try {
+        const deliveredRef = ref(
+            database,
+            `receipts/${message.id}/${currentUser.uid}/delivered`
+        );
+
+        await set(deliveredRef, Date.now());
+
+    } catch (error) {
+        console.error("Delivery receipt error:", error);
+    }
+}
+
+
+// SEEN RECEIPTS
+
+async function markSeen(message) {
+
+    if (!currentUser || message.senderUid === currentUser.uid) {
+        return;
+    }
+
+    if (document.visibilityState !== "visible") {
+        return;
+    }
+
+    try {
+        const seenRef = ref(
+            database,
+            `receipts/${message.id}/${currentUser.uid}/seen`
+        );
+
+        await set(seenRef, Date.now());
+
+    } catch (error) {
+        console.error("Seen receipt error:", error);
+    }
+}
+
+
+// MARK INCOMING MESSAGES AS SEEN WHEN CHAT IS VISIBLE
+
+document.addEventListener("visibilitychange", function() {
+
+    if (document.visibilityState === "visible" && currentUser) {
+
+        incomingMessages.forEach(function(message) {
+            markSeen(message);
+        });
+
+    }
+
+});
+
+
+// LOGIN
+
+loginForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("emailInput").value.trim();
+    const password = document.getElementById("passwordInput").value;
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = "Signing in...";
+    loginStatus.textContent = "Please wait...";
+
+    try {
+
+        await signInWithEmailAndPassword(auth, email, password);
+
+    } catch (error) {
+
+        loginStatus.textContent = showError(error);
+
+    } finally {
+
+        loginBtn.disabled = false;
+        loginBtn.textContent = "Enter Our Chat 💕";
+
+    }
+
+});
+
+
+// AUTHENTICATION STATE
+
+onAuthStateChanged(auth, async function(user) {
+
+    if (!user) {
+
+        currentUser = null;
+
+        if (unsubscribeMessages) {
+            unsubscribeMessages();
+            unsubscribeMessages = null;
+        }
+
+        clearReceiptListeners();
+        incomingMessages.clear();
+
+        loginArea.classList.remove("hidden");
+        chatArea.classList.add("hidden");
+        chatArea.style.display = "none";
+
+        return;
+    }
+
+    if (user.uid !== RODNIE_UID && user.uid !== NELIAN_UID) {
+
+        await signOut(auth);
+
+        loginStatus.textContent =
+            "Sorry, only Rodnie and Nelian can enter this chat.";
+
+        return;
+    }
+
+    currentUser = user;
+
+    // CHANGE HEADER NAME AND PHOTO HERE
+    updateChatProfile(user.uid);
+
+    loginArea.classList.add("hidden");
+    chatArea.classList.remove("hidden");
+    chatArea.style.display = "flex";
+
+    onlineStatus.textContent =
+        "● Signed in as " + getSenderName(user.uid);
+
+    connectionStatus.textContent = "Loading our messages...";
+
+    await startChat();
+
+});
+
+
+// START CHAT
+
+async function startChat() {
+
+    if (unsubscribeMessages) {
+        unsubscribeMessages();
+        unsubscribeMessages = null;
+    }
+
+    clearReceiptListeners();
+    incomingMessages.clear();
+
+    messagesContainer.innerHTML = "";
+    displayedMessageIds.clear();
+
+    oldestTimestamp = null;
+    loadingOlder = false;
+    hasOlderMessages = true;
+
+    loadOlderBtn.disabled = false;
+    loadOlderBtn.textContent = "Load older messages";
+    loadOlderBtn.classList.remove("hidden");
+
+    try {
+
+        const firstQuery = query(
+            messagesRef,
+            orderByChild("timestamp"),
+            limitToLast(PAGE_SIZE)
+        );
+
+        const snapshot = await get(firstQuery);
+
+        const initialMessages = [];
+
+        snapshot.forEach(function(child) {
+            initialMessages.push({
+                id: child.key,
+                ...child.val()
+            });
+        });
+
+        initialMessages.forEach(function(message) {
+            renderMessage(message);
+        });
+
+        if (initialMessages.length > 0) {
+            oldestTimestamp = initialMessages[0].timestamp;
+        }
+
+        if (initialMessages.length < PAGE_SIZE) {
+            hasOlderMessages = false;
+            loadOlderBtn.classList.add("hidden");
+        }
+
+        // LISTEN FOR NEW MESSAGES
+
+        const liveQuery = query(
+            messagesRef,
+            orderByChild("timestamp"),
+            limitToLast(PAGE_SIZE)
+        );
+
+        unsubscribeMessages = onChildAdded(
+            liveQuery,
+            function(snapshot) {
+
+                const message = {
+                    id: snapshot.key,
+                    ...snapshot.val()
+                };
+
+                if (!displayedMessageIds.has(message.id)) {
+                    renderMessage(message);
+                    scrollToBottom();
+                }
+
+            },
+            function(error) {
+
+                console.error(error);
+                connectionStatus.textContent = "Unable to receive messages.";
+
+            }
+        );
+
+        connectionStatus.textContent = "Connected to our little world 💗";
+
+        setTimeout(scrollToBottom, 200);
+
+    } catch (error) {
+
+        console.error(error);
+
+        connectionStatus.textContent =
+            "Unable to load messages. Check your database rules and connection.";
+
+    }
+
+}
+
+
+// LISTEN FOR A MESSAGE'S DELIVERY AND SEEN STATUS
+
+function listenForMessageStatus(message, statusElement) {
+
+    const recipientUid = getOtherUserUid();
+
+    if (!recipientUid) return;
+
+    const receiptRef = ref(
+        database,
+        `receipts/${message.id}/${recipientUid}`
+    );
+
+    const unsubscribe = onValue(receiptRef, function(snapshot) {
+
+        const receipt = snapshot.val();
+
+        if (receipt && receipt.seen) {
+
+            statusElement.textContent = "Seen ✓✓";
+            statusElement.classList.add("seen");
+
+        } else if (receipt && receipt.delivered) {
+
+            statusElement.textContent = "Delivered ✓✓";
+            statusElement.classList.remove("seen");
+
+        } else {
+
+            statusElement.textContent = "Sent ✓";
+            statusElement.classList.remove("seen");
+
+        }
+
+    }, function(error) {
+
+        console.error("Status listener error:", error);
+
+    });
+
+    receiptUnsubscribers.push(unsubscribe);
+}
+
+
+// DISPLAY MESSAGE
+
+function renderMessage(message) {
+
+    if (!message || !message.id || !message.timestamp || !currentUser) {
+        return;
+    }
+
+    if (displayedMessageIds.has(message.id)) return;
+
+    if (
+        message.senderUid !== RODNIE_UID &&
+        message.senderUid !== NELIAN_UID
+    ) {
+        return;
+    }
+
+    displayedMessageIds.add(message.id);
+
+    if (oldestTimestamp === null || message.timestamp < oldestTimestamp) {
+        oldestTimestamp = message.timestamp;
+    }
+
+    const isSent = message.senderUid === currentUser.uid;
+
+    const messageDiv = document.createElement("div");
+
+    messageDiv.className = isSent
+        ? "message sent"
+        : "message received";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble";
+    bubble.textContent = message.text || "";
+
+    const sender = document.createElement("small");
+
+    sender.textContent =
+        getSenderName(message.senderUid) + " · " +
+        formatTime(message.timestamp);
+
+    messageDiv.appendChild(bubble);
+    messageDiv.appendChild(sender);
+
+    if (isSent) {
+
+        const status = document.createElement("div");
+        status.className = "message-status";
+        status.textContent = "Sent ✓";
+
+        messageDiv.appendChild(status);
+
+        listenForMessageStatus(message, status);
+
+    } else {
+
+        incomingMessages.set(message.id, message);
+
+        markDelivered(message);
+
+        if (document.visibilityState === "visible") {
+            markSeen(message);
+        }
+
+    }
+
+    messagesContainer.appendChild(messageDiv);
+
+}
+
+
+// SEND MESSAGE
+
+chatForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    if (!currentUser) return;
+
+    const text = messageInput.value.trim();
+
+    if (!text) return;
+
+    sendBtn.disabled = true;
+
+    try {
+
+        const newMessageRef = push(messagesRef);
+
+        await set(newMessageRef, {
+            senderUid: currentUser.uid,
+            text: text,
+            timestamp: Date.now()
+        });
+
+        messageInput.value = "";
+        messageInput.focus();
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Message could not be sent. Please check your internet connection and Firebase rules."
+        );
+
+    } finally {
+
+        sendBtn.disabled = false;
+
+    }
+
+});
+
+
+// LOAD OLDER MESSAGES
+
+loadOlderBtn.addEventListener("click", async function() {
+
+    if (loadingOlder || !hasOlderMessages || oldestTimestamp === null) {
+        return;
+    }
+
+    loadingOlder = true;
+    loadOlderBtn.disabled = true;
+    loadOlderBtn.textContent = "Loading...";
+
+    const previousHeight = chatBody.scrollHeight;
+    const previousTop = chatBody.scrollTop;
+
+    try {
+
+        const olderQuery = query(
+            messagesRef,
+            orderByChild("timestamp"),
+            endAt(oldestTimestamp - 1),
+            limitToLast(PAGE_SIZE)
+        );
+
+        const snapshot = await get(olderQuery);
+
+        const olderMessages = [];
+
+        snapshot.forEach(function(child) {
+            olderMessages.push({
+                id: child.key,
+                ...child.val()
+            });
+        });
+
+        const fragment = document.createDocumentFragment();
+
+        olderMessages.forEach(function(message) {
+
+            if (
+                !message.id ||
+                displayedMessageIds.has(message.id) ||
+                !message.timestamp
+            ) {
+                return;
+            }
+
+            if (
+                message.senderUid !== RODNIE_UID &&
+                message.senderUid !== NELIAN_UID
+            ) {
+                return;
+            }
+
+            displayedMessageIds.add(message.id);
+
+            const isSent = message.senderUid === currentUser.uid;
+
+            const messageDiv = document.createElement("div");
+
+            messageDiv.className = isSent
+                ? "message sent"
+                : "message received";
+
+            const bubble = document.createElement("div");
+            bubble.className = "bubble";
+            bubble.textContent = message.text || "";
+
+            const sender = document.createElement("small");
+
+            sender.textContent =
+                getSenderName(message.senderUid) + " · " +
+                formatTime(message.timestamp);
+
+            messageDiv.appendChild(bubble);
+            messageDiv.appendChild(sender);
+
+            if (isSent) {
+
+                const status = document.createElement("div");
+                status.className = "message-status";
+                status.textContent = "Sent ✓";
+
+                messageDiv.appendChild(status);
+
+                listenForMessageStatus(message, status);
+
+            } else {
+
+                incomingMessages.set(message.id, message);
+                markDelivered(message);
+
+                if (document.visibilityState === "visible") {
+                    markSeen(message);
+                }
+
+            }
+
+            fragment.appendChild(messageDiv);
+
+        });
+
+        messagesContainer.prepend(fragment);
+
+        if (olderMessages.length > 0) {
+            oldestTimestamp = olderMessages[0].timestamp;
+        }
+
+        if (olderMessages.length < PAGE_SIZE) {
+            hasOlderMessages = false;
+            loadOlderBtn.classList.add("hidden");
+        }
+
+        chatBody.scrollTop =
+            previousTop + (chatBody.scrollHeight - previousHeight);
+
+    } catch (error) {
+
+        console.error(error);
+
+        loadOlderBtn.textContent = "Try again";
+
+    } finally {
+
+        loadingOlder = false;
+        loadOlderBtn.disabled = false;
+
+        if (hasOlderMessages) {
+            loadOlderBtn.textContent = "Load older messages";
+        }
+
+    }
+
+});
+
+
+// LOGOUT
+
+logoutBtn.addEventListener("click", async function() {
+
+    if (!confirm("Are you sure you want to leave our chat?")) {
+        return;
+    }
+
+    try {
+
+        await signOut(auth);
+
+        loginStatus.textContent = "You have logged out. See you again! 💗";
+
+    } catch (error) {
+
+        alert(showError(error));
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>

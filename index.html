@@ -3,210 +3,411 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Special Surprise for Nelian ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0f6">
+<title>Nelian's World ♡</title>
 
 <style>
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #f477ad;
+    --soft: #fff0f6;
+    --bg: #f8f7fa;
+    --text: #35313c;
+    --muted: #99939e;
 }
 
 body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: var(--text);
     min-height: 100vh;
+    transition: background-color .2s;
+}
+
+/* TOP BAR */
+
+.topbar {
+    height: 62px;
+    background: white;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 15px;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient(135deg, #ffd6e7, #ffc2d8, #ffe5ef);
-    color: #71364f;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px #00000008;
 }
 
-.screen {
+.logo {
+    color: var(--pink);
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.top-actions {
+    display: flex;
+    gap: 9px;
+}
+
+.circle-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--soft);
+    color: var(--pink);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* CUSTOMIZATION PANEL */
+
+.custom-panel {
     display: none;
-    width: 100%;
-    max-width: 460px;
-    padding: 25px 20px;
-    text-align: center;
-    background: rgba(255,255,255,0.9);
-    border: 2px solid white;
-    border-radius: 25px;
-    box-shadow: 0 12px 35px rgba(160,65,105,0.18);
-    animation: appear 0.4s ease;
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    width: 290px;
+    max-width: calc(100% - 30px);
+    background: white;
+    padding: 20px;
+    border-radius: 17px;
+    box-shadow: 0 5px 25px #00000020;
+    z-index: 200;
 }
 
-.screen.active {
+.custom-panel.show {
     display: block;
 }
 
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.custom-panel h3 {
+    margin-bottom: 15px;
 }
 
-h1 {
-    font-size: 2rem;
-    margin-bottom: 12px;
-    color: #d94f87;
+.custom-panel p {
+    font-size: 13px;
+    margin: 15px 0 8px;
+    color: #777;
 }
 
-h2 {
-    color: #d94f87;
-    margin-bottom: 12px;
+.custom-panel input[type="file"] {
+    width: 100%;
+    font-size: 12px;
 }
 
-p {
-    margin: 12px 0;
-    line-height: 1.5;
-}
-
-.heart {
-    font-size: 55px;
-    margin: 12px 0;
-    animation: heartbeat 1.2s infinite;
-}
-
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-}
-
-button {
+.custom-panel input[type="color"] {
+    width: 100%;
+    height: 42px;
     border: none;
-    border-radius: 30px;
-    padding: 13px 25px;
-    margin: 8px 4px;
-    background: #ec6b9d;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 4px 10px rgba(200,70,125,0.2);
+    background: white;
 }
 
-button:hover {
-    background: #d94f87;
-    transform: scale(1.04);
+.custom-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
 }
 
-button:active {
-    transform: scale(0.97);
+.custom-buttons button {
+    flex: 1;
+    padding: 11px;
+    border: none;
+    border-radius: 20px;
+    background: var(--soft);
+    color: var(--pink);
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.secondary {
-    background: #f5a4c2;
-    color: #71364f;
+/* MAIN LAYOUT */
+
+.container {
+    max-width: 1050px;
+    margin: 25px auto;
+    padding: 0 18px;
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 20px;
+}
+
+/* PROFILE */
+
+.left-column {
+    min-width: 0;
+}
+
+.profile {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    text-align: center;
+    height: fit-content;
+}
+
+.profile img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--soft);
+}
+
+.profile h3 {
+    margin: 10px 0 5px;
+}
+
+.small {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* SIDE MENU */
+
+.menu {
+    background: white;
+    padding: 12px;
+    border-radius: 18px;
+    margin-top: 15px;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #555;
+    padding: 13px;
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: var(--soft);
+    color: var(--pink);
+}
+
+/* FEED */
+
+.feed {
+    min-width: 0;
+}
+
+.banner {
+    min-height: 170px;
+    border-radius: 20px;
+    padding: 25px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+        linear-gradient(90deg, #dc609bcc, #f58fba99),
+        url("images/background.jpg") center/cover;
+    margin-bottom: 18px;
+}
+
+.banner h1 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.banner p {
+    font-size: 13px;
+}
+
+.section-title {
+    font-size: 17px;
+    margin: 20px 0 12px;
+}
+
+/* QUICK ACCESS */
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.quick-card {
+    background: white;
+    padding: 17px 10px;
+    text-align: center;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: .2s;
+}
+
+.quick-card:hover {
+    transform: translateY(-3px);
+    color: var(--pink);
+}
+
+.quick-card .emoji {
+    font-size: 25px;
+    display: block;
+    margin-bottom: 9px;
+}
+
+.quick-card span:last-child {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* GAME CENTER CARD */
+
+.game-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+.game-card img {
+    width: 100%;
+    height: 165px;
+    object-fit: cover;
+    display: block;
 }
 
 .game-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 12px 0;
-    font-size: 15px;
+    padding: 17px;
+}
+
+.game-info h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.game-info p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+.play {
+    display: inline-block;
+    background: var(--pink);
+    color: white;
+    padding: 11px 19px;
+    margin-top: 13px;
+    text-decoration: none;
+    border-radius: 22px;
+    font-size: 12px;
     font-weight: bold;
 }
 
-#score {
-    color: #d94f87;
+/* MEMORIES */
+
+.memory {
+    background: white;
+    border-radius: 18px;
+    padding: 17px;
+    margin-bottom: 20px;
 }
 
-.game-wrapper {
+.memory img {
     width: 100%;
-    max-width: 360px;
-    margin: 0 auto;
-}
-
-#gameCanvas {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border: 5px solid #f4a0bf;
-    border-radius: 14px;
-    background:
-        linear-gradient(rgba(255,255,255,0.40), rgba(255,255,255,0.40)),
-        url("cutepic.jpg") center / cover no-repeat;
-    touch-action: none;
-}
-
-.controls {
-    display: grid;
-    grid-template-columns: repeat(3, 60px);
-    grid-template-rows: repeat(2, 48px);
-    justify-content: center;
-    gap: 5px;
-    margin: 15px auto 5px;
-}
-
-.controls button {
-    margin: 0;
-    padding: 8px;
-    font-size: 20px;
+    max-height: 240px;
+    object-fit: cover;
     border-radius: 12px;
-    touch-action: manipulation;
-}
-
-.controls .up {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.controls .left {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.controls .down {
-    grid-column: 2;
-    grid-row: 2;
-}
-
-.controls .right {
-    grid-column: 3;
-    grid-row: 2;
-}
-
-.small-text {
-    font-size: 13px;
-    color: #a66b83;
-}
-
-#videoScreen {
-    max-width: 650px;
-}
-
-#surpriseVideo {
-    width: 100%;
-    max-height: 65vh;
-    border-radius: 15px;
-    background: #000;
     margin-top: 12px;
 }
 
-#videoFallback {
+/* BOTTOM NAVIGATION */
+
+.bottom-nav {
     display: none;
 }
 
-@media (max-width: 400px) {
-    .screen {
-        padding: 20px 12px;
+/* MOBILE RESPONSIVE */
+
+@media(max-width: 700px) {
+
+    .topbar {
+        height: 58px;
+        padding: 0 15px;
     }
 
-    h1 {
-        font-size: 1.7rem;
+    .container {
+        display: block;
+        margin: 15px auto 85px;
+        padding: 0 12px;
     }
 
-    .controls {
-        grid-template-columns: repeat(3, 55px);
+    .left-column {
+        display: none;
+    }
+
+    .banner {
+        min-height: 145px;
+        padding: 20px;
+    }
+
+    .banner h1 {
+        font-size: 23px;
+    }
+
+    .quick-grid {
+        gap: 9px;
+    }
+
+    .quick-card {
+        padding: 15px 5px;
+    }
+
+    .game-card img {
+        height: 145px;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background: white;
+        justify-content: space-around;
+        align-items: center;
+        box-shadow: 0 -3px 15px #00000010;
+        z-index: 9999;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .bottom-nav a {
+        flex: 1;
+        text-decoration: none;
+        color: #999;
+        font-size: 11px;
+        text-align: center;
+        padding: 8px 0;
+    }
+
+    .bottom-nav span {
+        display: block;
+        font-size: 21px;
+        margin-bottom: 3px;
+    }
+
+    .bottom-nav a.active {
+        color: var(--pink);
+        font-weight: bold;
     }
 }
 </style>
@@ -214,769 +415,355 @@ button:active {
 
 <body>
 
-<!-- START SCREEN -->
-<section class="screen active" id="startScreen">
-    <div class="heart">💗</div>
-    <h1>Hi, Nelian!</h1>
-    <p>I prepared a little game for you.</p>
-    <p class="small-text">Collect 10 apples to unlock your surprise!</p>
-    <button onclick="startGame()">START GAME ✨</button>
-</section>
+<!-- TOP BAR -->
 
-<!-- GAME SCREEN -->
-<section class="screen" id="gameScreen">
-    <h2>🍎 Snake Game</h2>
+<header class="topbar">
 
-    <div class="game-info">
-        <span>🍓 Apples: <span id="score">0</span> / 10</span>
-        <span>🐍 Let's play!</span>
+    <div class="logo">♡ Nelian</div>
+
+    <div class="top-actions">
+
+        <button class="circle-btn"
+                onclick="toggleCustomize()"
+                title="Customize">⚙</button>
+
+        <a href="messenger/chat.html"
+           class="circle-btn"
+           title="Messages">✉</a>
+
+        <a href="#profile"
+           class="circle-btn"
+           title="Profile">♡</a>
+
     </div>
 
-    <div class="game-wrapper">
-        <canvas id="gameCanvas" width="360" height="360"></canvas>
+</header>
+
+<!-- CUSTOMIZATION PANEL -->
+
+<div class="custom-panel" id="customPanel">
+
+    <h3>Customize ♡</h3>
+
+    <p>Background photo</p>
+
+    <input type="file"
+           id="backgroundUpload"
+           accept="image/*">
+
+    <p>Background color</p>
+
+    <input type="color"
+           id="backgroundColor"
+           value="#f8f7fa">
+
+    <div class="custom-buttons">
+        <button onclick="resetBackground()">Reset</button>
+        <button onclick="toggleCustomize()">Close</button>
     </div>
 
-    <div class="controls">
-        <button class="up" onclick="changeDirection('UP')">⬆️</button>
-        <button class="left" onclick="changeDirection('LEFT')">⬅️</button>
-        <button class="down" onclick="changeDirection('DOWN')">⬇️</button>
-        <button class="right" onclick="changeDirection('RIGHT')">➡️</button>
-    </div>
+</div>
 
-    <button class="secondary" onclick="restartGame()">RESTART ↻</button>
-</section>
+<!-- MAIN CONTENT -->
 
-<!-- GAME OVER SCREEN -->
-<section class="screen" id="gameOverScreen">
-    <div class="heart">🥺</div>
-    <h1>Game Over!</h1>
-    <p>Don't give up! Try again.</p>
-    <p>Apples collected: <strong id="finalScore">0</strong></p>
-    <button onclick="startGame()">PLAY AGAIN ❤️</button>
-</section>
+<div class="container">
 
-<!-- UNLOCK SCREEN -->
-<section class="screen" id="unlockScreen">
-    <div class="heart">🎉</div>
-    <h1>You Did It!</h1>
-    <p>You collected all 10 apples!</p>
-    <p>Your surprise is ready. 💗</p>
-    <button onclick="playSurpriseVideo()">PLAY MY SURPRISE 💕</button>
-</section>
+    <!-- SIDEBAR -->
 
-<!-- VIDEO SCREEN -->
-<section class="screen" id="videoScreen">
-    <h2>For You, Nelian ❤️</h2>
+    <aside class="left-column">
 
-    <video
-        id="surpriseVideo"
-        playsinline
-        preload="auto"
-        controls
-        controlsList="nodownload noremoteplayback"
-        disablePictureInPicture
-    >
-        <source src="rod.mp4" type="video/mp4">
-        Your browser does not support this video.
-    </video>
+        <div class="profile" id="profile">
 
-    <div id="videoFallback">
-        <p>Tap below to play your surprise.</p>
-        <button onclick="playSurpriseVideo()">PLAY VIDEO ▶️</button>
-    </div>
-</section>
+            <img src="images/cutepic.jpg" alt="Nelian">
+
+            <h3>Nelian ♡</h3>
+
+            <p class="small">My favorite person</p>
+
+        </div>
+
+        <nav class="menu">
+
+            <a class="active" href="index.html">🏠 Home</a>
+
+            <a href="games/index.html">🎮 Games</a>
+
+            <a href="messenger/chat.html">💬 Messages</a>
+
+            <a href="memories/index.html">📸 Memories</a>
+
+        </nav>
+
+    </aside>
+
+    <!-- MAIN FEED -->
+
+    <main class="feed">
+
+        <section class="banner">
+
+            <h1>Hi, Nelian! ♡</h1>
+
+            <p>Your little world is waiting.</p>
+
+        </section>
+
+        <!-- QUICK ACCESS -->
+
+        <h2 class="section-title">Quick access</h2>
+
+        <div class="quick-grid">
+
+            <a href="messenger/chat.html" class="quick-card">
+
+                <span class="emoji">💬</span>
+
+                <span>Chat</span>
+
+            </a>
+
+            <a href="games/index.html" class="quick-card">
+
+                <span class="emoji">🎮</span>
+
+                <span>Games</span>
+
+            </a>
+
+            <a href="memories/index.html" class="quick-card">
+
+                <span class="emoji">💗</span>
+
+                <span>Memories</span>
+
+            </a>
+
+        </div>
+
+        <!-- GAME CENTER PREVIEW -->
+
+        <h2 class="section-title">Games 🎮</h2>
+
+        <div class="game-card">
+
+            <img src="images/cutepic.jpg" alt="Our Game Center">
+
+            <div class="game-info">
+
+                <h3>Our Game Center ♡</h3>
+
+                <p>
+                    Explore our collection of games and adventures.
+                    There's something special waiting for you!
+                </p>
+
+                <a href="games/index.html" class="play">
+                    Explore Games →
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- MEMORIES PREVIEW -->
+
+        <h2 class="section-title">Memories ♡</h2>
+
+        <div class="memory">
+
+            <p class="small">
+                A little place for our special moments.
+            </p>
+
+            <img src="images/background.jpg" alt="Our memories">
+
+            <a href="memories/index.html" class="play">
+                Open Memories →
+            </a>
+
+        </div>
+
+        <!-- PERSONAL MESSAGE -->
+
+        <h2 class="section-title">A little message 💗</h2>
+
+        <div class="memory">
+
+            <p style="font-size:13px; line-height:1.7;">
+                This little world was made especially for you, Nelian.
+                Every page has something from me to you.
+                Whenever you open it, remember that Rodnie is here with you. ❤️
+            </p>
+
+            <p class="small" style="margin-top:12px;">
+                With love, Rodnie 💗
+            </p>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- MOBILE NAVIGATION -->
+
+<nav class="bottom-nav">
+
+    <a class="active" href="index.html">
+        <span>⌂</span>
+        Home
+    </a>
+
+    <a href="games/index.html">
+        <span>🎮</span>
+        Games
+    </a>
+
+    <a href="messenger/chat.html">
+        <span>💬</span>
+        Chat
+    </a>
+
+    <a href="memories/index.html">
+        <span>♡</span>
+        Memories
+    </a>
+
+</nav>
+
+<!-- JAVASCRIPT -->
 
 <script>
 
-// =====================================
-// GAME SETTINGS
-// =====================================
+const upload = document.getElementById("backgroundUpload");
+const colorPicker = document.getElementById("backgroundColor");
+const panel = document.getElementById("customPanel");
 
-const TARGET_SCORE = 10;
-const CELL_SIZE = 20;
-const GRID_SIZE = 18;
-const GAME_SPEED = 250;
+const DEFAULT_COLOR = "#f8f7fa";
 
-// =====================================
-// ELEMENTS
-// =====================================
+// OPEN AND CLOSE CUSTOMIZATION
 
-const canvas = document.getElementById("gameCanvas");
-const ctx = canvas.getContext("2d");
+function toggleCustomize() {
+    panel.classList.toggle("show");
+}
 
-const scoreDisplay = document.getElementById("score");
-const finalScoreDisplay = document.getElementById("finalScore");
+// LOAD SAVED BACKGROUND
 
-const surpriseVideo = document.getElementById("surpriseVideo");
-const videoFallback = document.getElementById("videoFallback");
+function loadBackground() {
 
-// =====================================
-// VIDEO DOWNLOAD RESTRICTIONS
-// =====================================
+    const savedImage = localStorage.getItem("nelBackgroundImage");
+    const savedColor = localStorage.getItem("nelBackgroundColor");
 
-surpriseVideo.setAttribute(
-    "controlsList",
-    "nodownload noremoteplayback"
-);
-
-surpriseVideo.disablePictureInPicture = true;
-
-surpriseVideo.addEventListener("contextmenu", event => {
-    event.preventDefault();
-});
-
-// =====================================
-// AUDIO SYSTEM
-// =====================================
-
-let audioContext = null;
-let tensionTimeout = null;
-let tensionBeat = 0;
-
-function activateAudio() {
-    if (!audioContext) {
-        const AudioContextClass =
-            window.AudioContext || window.webkitAudioContext;
-
-        if (AudioContextClass) {
-            audioContext = new AudioContextClass();
-        }
+    if (savedImage) {
+        document.body.style.backgroundImage =
+            `url("${savedImage}")`;
     }
 
-    if (audioContext && audioContext.state === "suspended") {
-        audioContext.resume();
+    if (savedColor) {
+        document.body.style.backgroundColor = savedColor;
+        colorPicker.value = savedColor;
     }
 }
 
-function playTone(
-    frequency,
-    duration,
-    volume = 0.08,
-    type = "sine",
-    endFrequency = null
-) {
-    if (!audioContext) return;
+loadBackground();
 
-    const oscillator = audioContext.createOscillator();
-    const gain = audioContext.createGain();
+// UPLOAD BACKGROUND IMAGE
 
-    const now = audioContext.currentTime;
+upload.addEventListener("change", function() {
 
-    oscillator.type = type;
-    oscillator.frequency.setValueAtTime(frequency, now);
+    const file = this.files[0];
 
-    if (endFrequency !== null) {
-        oscillator.frequency.exponentialRampToValueAtTime(
-            Math.max(1, endFrequency),
-            now + duration
-        );
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        alert("Please select an image.");
+        return;
     }
 
-    gain.gain.setValueAtTime(volume, now);
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        now + duration
-    );
+    const reader = new FileReader();
 
-    oscillator.connect(gain);
-    gain.connect(audioContext.destination);
+    reader.onload = function(event) {
 
-    oscillator.start(now);
-    oscillator.stop(now + duration);
-}
+        const image = new Image();
 
-// =====================================
-// LOUDER START SOUND
-// =====================================
+        image.onload = function() {
 
-function startSound() {
-    playTone(440, 0.12, 0.18, "sine", 660);
+            const canvas = document.createElement("canvas");
 
-    setTimeout(() => {
-        playTone(660, 0.16, 0.18, "sine", 880);
-    }, 120);
-}
+            const maxWidth = 1200;
 
-// =====================================
-// LOUDER CRUNCHY APPLE SOUND
-// =====================================
+            const scale = Math.min(1, maxWidth / image.width);
 
-function eatSound() {
-    if (!audioContext) return;
+            canvas.width = image.width * scale;
+            canvas.height = image.height * scale;
 
-    const now = audioContext.currentTime;
-    const duration = 0.22;
+            const context = canvas.getContext("2d");
 
-    const bufferSize = Math.floor(
-        audioContext.sampleRate * duration
-    );
-
-    const buffer = audioContext.createBuffer(
-        1,
-        bufferSize,
-        audioContext.sampleRate
-    );
-
-    const data = buffer.getChannelData(0);
-
-    for (let i = 0; i < bufferSize; i++) {
-        const progress = i / bufferSize;
-        const envelope = Math.pow(1 - progress, 1.6);
-        const crackle = Math.random() > 0.78 ? 1.7 : 1;
-
-        data[i] = (Math.random() * 2 - 1) * envelope * crackle;
-    }
-
-    const source = audioContext.createBufferSource();
-    source.buffer = buffer;
-
-    const filter = audioContext.createBiquadFilter();
-    filter.type = "bandpass";
-    filter.frequency.value = 1700;
-    filter.Q.value = 0.8;
-
-    const gain = audioContext.createGain();
-    gain.gain.setValueAtTime(0.38, now);
-    gain.gain.exponentialRampToValueAtTime(
-        0.001,
-        now + duration
-    );
-
-    source.connect(filter);
-    filter.connect(gain);
-    gain.connect(audioContext.destination);
-
-    source.start(now);
-
-    // Louder crunchy crackles
-    playTone(950, 0.045, 0.07, "square", 250);
-
-    setTimeout(() => {
-        playTone(700, 0.05, 0.07, "square", 180);
-    }, 55);
-
-    setTimeout(() => {
-        playTone(1100, 0.04, 0.055, "square", 350);
-    }, 100);
-}
-
-// =====================================
-// EXTRA LOUD MOBILE-FRIENDLY HEARTBEAT
-// =====================================
-
-function startTensionSound() {
-    stopTensionSound();
-
-    tensionBeat = 0;
-    scheduleTensionBeat();
-}
-
-function scheduleTensionBeat() {
-    if (!gameRunning || !audioContext) return;
-
-    tensionBeat++;
-
-    const progress = Math.min(score / TARGET_SCORE, 1);
-
-    // Heartbeat becomes faster as score increases
-    const interval = Math.max(
-        180,
-        480 - progress * 260
-    );
-
-    // Higher frequencies work better on phone speakers
-    const bassFrequency = 110 + progress * 45;
-
-    // First loud heartbeat
-    playTone(
-        bassFrequency,
-        0.16,
-        0.65,
-        "sine",
-        bassFrequency * 0.55
-    );
-
-    // Second loud heartbeat
-    setTimeout(() => {
-        if (gameRunning) {
-            playTone(
-                bassFrequency * 1.35,
-                0.13,
-                0.55,
-                "sine",
-                bassFrequency * 0.65
+            context.drawImage(
+                image,
+                0,
+                0,
+                canvas.width,
+                canvas.height
             );
-        }
-    }, 110);
 
-    // Extra heartbeat punch for mobile speakers
-    playTone(
-        bassFrequency * 2,
-        0.10,
-        0.20,
-        "triangle",
-        bassFrequency * 1.3
-    );
+            const compressedImage =
+                canvas.toDataURL("image/jpeg", 0.75);
 
-    // Suspense accent
-    if (tensionBeat % 3 === 0) {
-        playTone(
-            500 + progress * 400,
-            0.15,
-            0.30,
-            "triangle",
-            300 + progress * 200
-        );
-    }
+            try {
 
-    // Extra warning when close to winning
-    if (score >= 7 && tensionBeat % 2 === 0) {
-        playTone(
-            1000 + progress * 400,
-            0.10,
-            0.25,
-            "sine",
-            600
-        );
-    }
+                localStorage.setItem(
+                    "nelBackgroundImage",
+                    compressedImage
+                );
 
-    tensionTimeout = setTimeout(
-        scheduleTensionBeat,
-        interval
-    );
-}
+                document.body.style.backgroundImage =
+                    `url("${compressedImage}")`;
 
-function stopTensionSound() {
-    if (tensionTimeout !== null) {
-        clearTimeout(tensionTimeout);
-        tensionTimeout = null;
-    }
-}
+            } catch (error) {
 
-// =====================================
-// LOUDER GAME OVER AND VICTORY SOUNDS
-// =====================================
+                alert("Image is too large. Try another photo.");
 
-function gameOverSound() {
-    playTone(350, 0.25, 0.18, "sawtooth", 150);
-
-    setTimeout(() => {
-        playTone(180, 0.35, 0.15, "sawtooth", 65);
-    }, 180);
-}
-
-function victorySound() {
-    playTone(523, 0.15, 0.18, "sine");
-
-    setTimeout(() => {
-        playTone(659, 0.15, 0.18, "sine");
-    }, 150);
-
-    setTimeout(() => {
-        playTone(784, 0.20, 0.18, "sine");
-    }, 300);
-
-    setTimeout(() => {
-        playTone(1046, 0.35, 0.18, "sine");
-    }, 500);
-}
-
-// =====================================
-// SCREEN MANAGEMENT
-// =====================================
-
-function showScreen(screenId) {
-    document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
-    });
-
-    document.getElementById(screenId).classList.add("active");
-}
-
-// =====================================
-// GAME VARIABLES
-// =====================================
-
-let snake = [];
-let apple = {};
-
-let direction = "RIGHT";
-let nextDirection = "RIGHT";
-
-let score = 0;
-let gameInterval = null;
-let gameRunning = false;
-
-// =====================================
-// START GAME
-// =====================================
-
-function startGame() {
-    activateAudio();
-    startSound();
-    restartGame();
-}
-
-// =====================================
-// RESTART GAME
-// =====================================
-
-function restartGame() {
-    clearInterval(gameInterval);
-    stopTensionSound();
-
-    surpriseVideo.pause();
-
-    try {
-        surpriseVideo.currentTime = 0;
-    } catch (error) {
-        console.log("Video reset:", error);
-    }
-
-    snake = [
-        { x: 5, y: 9 },
-        { x: 4, y: 9 },
-        { x: 3, y: 9 }
-    ];
-
-    direction = "RIGHT";
-    nextDirection = "RIGHT";
-
-    score = 0;
-    scoreDisplay.textContent = score;
-
-    gameRunning = true;
-
-    generateApple();
-    drawGame();
-
-    showScreen("gameScreen");
-
-    gameInterval = setInterval(gameLoop, GAME_SPEED);
-
-    startTensionSound();
-}
-
-// =====================================
-// GENERATE APPLE
-// =====================================
-
-function generateApple() {
-    let validPosition = false;
-
-    while (!validPosition) {
-        apple = {
-            x: Math.floor(Math.random() * GRID_SIZE),
-            y: Math.floor(Math.random() * GRID_SIZE)
+            }
         };
 
-        validPosition = !snake.some(segment =>
-            segment.x === apple.x && segment.y === apple.y
-        );
-    }
-}
-
-// =====================================
-// DRAW GAME
-// =====================================
-
-function drawGame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Apple
-    ctx.font = "19px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    ctx.fillText(
-        "🍎",
-        apple.x * CELL_SIZE + CELL_SIZE / 2,
-        apple.y * CELL_SIZE + CELL_SIZE / 2
-    );
-
-    // Snake
-    snake.forEach((segment, index) => {
-        const x = segment.x * CELL_SIZE;
-        const y = segment.y * CELL_SIZE;
-
-        ctx.fillStyle = index === 0 ? "#e83e83" : "#f36fa5";
-
-        ctx.beginPath();
-        ctx.roundRect(
-            x + 1,
-            y + 1,
-            CELL_SIZE - 2,
-            CELL_SIZE - 2,
-            6
-        );
-        ctx.fill();
-
-        // Snake eyes
-        if (index === 0) {
-            ctx.fillStyle = "white";
-
-            let eye1 = { x: x + 6, y: y + 6 };
-            let eye2 = { x: x + 14, y: y + 6 };
-
-            if (direction === "DOWN") {
-                eye1 = { x: x + 6, y: y + 14 };
-                eye2 = { x: x + 14, y: y + 14 };
-            }
-
-            if (direction === "LEFT") {
-                eye1 = { x: x + 6, y: y + 6 };
-                eye2 = { x: x + 6, y: y + 14 };
-            }
-
-            if (direction === "RIGHT") {
-                eye1 = { x: x + 14, y: y + 6 };
-                eye2 = { x: x + 14, y: y + 14 };
-            }
-
-            ctx.beginPath();
-            ctx.arc(eye1.x, eye1.y, 2, 0, Math.PI * 2);
-            ctx.arc(eye2.x, eye2.y, 2, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    });
-}
-
-// =====================================
-// GAME LOOP
-// =====================================
-
-function gameLoop() {
-    if (!gameRunning) return;
-
-    direction = nextDirection;
-
-    const head = { ...snake[0] };
-
-    if (direction === "UP") head.y--;
-    if (direction === "DOWN") head.y++;
-    if (direction === "LEFT") head.x--;
-    if (direction === "RIGHT") head.x++;
-
-    // Wall collision
-    if (
-        head.x < 0 ||
-        head.x >= GRID_SIZE ||
-        head.y < 0 ||
-        head.y >= GRID_SIZE
-    ) {
-        endGame();
-        return;
-    }
-
-    const eatingApple =
-        head.x === apple.x && head.y === apple.y;
-
-    const bodyToCheck = eatingApple
-        ? snake
-        : snake.slice(0, -1);
-
-    const hitBody = bodyToCheck.some(segment =>
-        segment.x === head.x && segment.y === head.y
-    );
-
-    if (hitBody) {
-        endGame();
-        return;
-    }
-
-    snake.unshift(head);
-
-    if (eatingApple) {
-        score++;
-        scoreDisplay.textContent = score;
-
-        eatSound();
-
-        if (score >= TARGET_SCORE) {
-            winGame();
-            return;
-        }
-
-        generateApple();
-    } else {
-        snake.pop();
-    }
-
-    drawGame();
-}
-
-// =====================================
-// GAME OVER
-// =====================================
-
-function endGame() {
-    gameRunning = false;
-
-    clearInterval(gameInterval);
-    stopTensionSound();
-
-    finalScoreDisplay.textContent = score;
-
-    gameOverSound();
-
-    showScreen("gameOverScreen");
-}
-
-// =====================================
-// WIN GAME - AUTOMATIC VIDEO
-// =====================================
-
-function winGame() {
-    gameRunning = false;
-
-    clearInterval(gameInterval);
-    stopTensionSound();
-
-    victorySound();
-
-    // Automatically start the surprise video
-    setTimeout(() => {
-        playSurpriseVideo();
-    }, 600);
-}
-
-// =====================================
-// DIRECTION CONTROLS
-// =====================================
-
-function changeDirection(newDirection) {
-    if (!gameRunning) return;
-
-    const opposites = {
-        UP: "DOWN",
-        DOWN: "UP",
-        LEFT: "RIGHT",
-        RIGHT: "LEFT"
+        image.src = event.target.result;
     };
 
-    if (newDirection === opposites[direction]) {
-        return;
-    }
+    reader.readAsDataURL(file);
 
-    nextDirection = newDirection;
+});
+
+// CHANGE BACKGROUND COLOR
+
+colorPicker.addEventListener("input", function() {
+
+    document.body.style.backgroundColor = this.value;
+
+    localStorage.setItem(
+        "nelBackgroundColor",
+        this.value
+    );
+
+});
+
+// RESET CUSTOMIZATION
+
+function resetBackground() {
+
+    localStorage.removeItem("nelBackgroundImage");
+
+    localStorage.removeItem("nelBackgroundColor");
+
+    document.body.style.backgroundImage = "none";
+
+    document.body.style.backgroundColor = DEFAULT_COLOR;
+
+    colorPicker.value = DEFAULT_COLOR;
+
+    upload.value = "";
+
 }
-
-// =====================================
-// KEYBOARD CONTROLS
-// =====================================
-
-document.addEventListener("keydown", event => {
-    const key = event.key.toLowerCase();
-
-    const keyDirections = {
-        arrowup: "UP",
-        w: "UP",
-        arrowdown: "DOWN",
-        s: "DOWN",
-        arrowleft: "LEFT",
-        a: "LEFT",
-        arrowright: "RIGHT",
-        d: "RIGHT"
-    };
-
-    if (keyDirections[key]) {
-        event.preventDefault();
-        changeDirection(keyDirections[key]);
-    }
-});
-
-// =====================================
-// MOBILE SWIPE CONTROLS
-// =====================================
-
-let touchStartX = 0;
-let touchStartY = 0;
-
-canvas.addEventListener("touchstart", event => {
-    const touch = event.changedTouches[0];
-
-    touchStartX = touch.clientX;
-    touchStartY = touch.clientY;
-}, { passive: true });
-
-canvas.addEventListener("touchend", event => {
-    const touch = event.changedTouches[0];
-
-    const differenceX = touch.clientX - touchStartX;
-    const differenceY = touch.clientY - touchStartY;
-
-    if (Math.abs(differenceX) > Math.abs(differenceY)) {
-        if (differenceX > 20) {
-            changeDirection("RIGHT");
-        } else if (differenceX < -20) {
-            changeDirection("LEFT");
-        }
-    } else {
-        if (differenceY > 20) {
-            changeDirection("DOWN");
-        } else if (differenceY < -20) {
-            changeDirection("UP");
-        }
-    }
-}, { passive: true });
-
-// =====================================
-// SURPRISE VIDEO
-// =====================================
-
-function playSurpriseVideo() {
-    stopTensionSound();
-
-    gameRunning = false;
-    clearInterval(gameInterval);
-
-    showScreen("videoScreen");
-
-    videoFallback.style.display = "none";
-
-    surpriseVideo.pause();
-
-    try {
-        surpriseVideo.currentTime = 0;
-    } catch (error) {
-        console.log("Video reset:", error);
-    }
-
-    surpriseVideo.play().catch(error => {
-        console.log("Video playback needs a manual click:", error);
-        videoFallback.style.display = "block";
-    });
-}
-
-// =====================================
-// VIDEO ENDS - RETURN TO START
-// =====================================
-
-surpriseVideo.addEventListener("ended", () => {
-    surpriseVideo.pause();
-
-    try {
-        surpriseVideo.currentTime = 0;
-    } catch (error) {
-        console.log("Video reset:", error);
-    }
-
-    videoFallback.style.display = "none";
-
-    // Immediately return to starting screen
-    showScreen("startScreen");
-});
-
-// Show fallback if video cannot load
-surpriseVideo.addEventListener("error", () => {
-    videoFallback.style.display = "block";
-});
-
-// =====================================
-// INITIAL SCREEN
-// =====================================
-
-showScreen("startScreen");
 
 </script>
 

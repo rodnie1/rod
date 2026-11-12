@@ -1,0 +1,2902 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#fff0f6">
+
+<meta name="description" content="Welcome to Nelian's World.">
+
+<title>Nelian's World ♡</title>
+
+
+
+<link rel="preload" as="image" href="assets/images/background.jpg">
+
+
+
+<style>
+
+:root {
+
+    --accent: #f477ad;
+
+    --bg: #fff5f8;
+
+    --card: #ffffff;
+
+    --text: #39333b;
+
+    --muted: #99919a;
+
+    --soft: #ffe8f1;
+
+    --border: #f4e5eb;
+
+}
+
+
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    transition: background .2s, color .2s;
+
+    padding-bottom: 85px;
+
+    overflow-x: hidden;
+
+}
+
+
+
+button, a {
+
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+
+
+button {
+
+    font: inherit;
+
+    cursor: pointer;
+
+}
+
+
+
+/* MAIN CONTENT */
+
+
+
+.container {
+
+    width: min(900px, 92%);
+
+    margin: 0 auto 100px;
+
+}
+
+
+
+/* PROFILE */
+
+
+
+.profile-page {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 0 0 18px 18px;
+
+    overflow: hidden;
+
+    width: 100vw;
+
+    margin-left: calc(50% - 50vw);
+
+    margin-bottom: 28px;
+
+}
+
+
+
+/* FULL-WIDTH COVER PHOTO */
+
+
+
+.profile-cover {
+
+    width: 100%;
+
+    height: 262.5px;
+
+    background:
+
+        linear-gradient(to bottom, transparent 65%, #00000030),
+
+        url("assets/images/background.jpg") center center / cover no-repeat;
+
+    background-color: #f8c8dc;
+
+    position: relative;
+
+    cursor: pointer;
+
+}
+
+
+
+.profile-cover:focus-visible {
+
+    outline: 3px solid var(--accent);
+
+    outline-offset: -3px;
+
+}
+
+
+
+.cover-label {
+
+    position: absolute;
+
+    bottom: 18px;
+
+    right: 30px;
+
+    background: #ffffffdf;
+
+    color: #39333b;
+
+    padding: 9px 14px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    pointer-events: none;
+
+}
+
+
+
+/* PROFILE DETAILS */
+
+
+
+.profile-details {
+
+    width: min(900px, 92%);
+
+    margin: 0 auto;
+
+    padding: 0 20px 20px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 20px;
+
+    position: relative;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+
+.profile-photo {
+
+    width: 175px;
+
+    height: 175px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 5px solid var(--card);
+
+    margin-top: -85px;
+
+    background: var(--soft);
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+
+.profile-text {
+
+    flex: 1;
+
+    padding: 12px 0 10px;
+
+}
+
+
+
+.profile-text h1 {
+
+    font-size: 27px;
+
+    margin-bottom: 7px;
+
+}
+
+
+
+.profile-text p {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+
+.profile-actions {
+
+    display: flex;
+
+    gap: 9px;
+
+    padding-bottom: 12px;
+
+}
+
+
+
+.profile-message-btn {
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: var(--accent);
+
+    color: white;
+
+    padding: 10px 16px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    transition: .2s;
+
+}
+
+
+
+.profile-message-btn:hover {
+
+    filter: brightness(.94);
+
+    transform: translateY(-2px);
+
+}
+
+
+
+/* HIGHLIGHTS */
+
+
+
+.highlights-section {
+
+    width: min(900px, 92%);
+
+    margin: 0 auto;
+
+    padding: 20px 25px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+
+.highlights-title {
+
+    font-size: 15px;
+
+    margin-bottom: 16px;
+
+}
+
+
+
+.highlights-list {
+
+    display: flex;
+
+    gap: 9px;
+
+    overflow-x: auto;
+
+    padding: 3px 2px 10px;
+
+    scrollbar-width: thin;
+
+}
+
+
+
+.highlight-item {
+
+    flex: 0 0 110px;
+
+    width: 110px;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: center;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+}
+
+
+
+/* BIGGER PORTRAIT HIGHLIGHT PHOTOS */
+
+
+
+.highlight-circle {
+
+    width: 110px;
+
+    height: 145px;
+
+    border-radius: 12px;
+
+    padding: 0;
+
+    border: none;
+
+    margin: 0 auto 7px;
+
+    overflow: hidden;
+
+    background: var(--soft);
+
+}
+
+
+
+.highlight-circle img {
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 12px;
+
+    object-fit: cover;
+
+}
+
+
+
+.highlight-item span {
+
+    display: block;
+
+    font-size: 11px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
+
+
+
+/* MODERN ADD PHOTO BUTTON */
+
+
+
+.add-highlight .highlight-circle {
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: var(--soft);
+
+    padding: 0;
+
+    overflow: visible;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    color: var(--accent);
+
+    transition: transform .2s ease, background .2s ease;
+
+}
+
+
+
+.add-highlight .highlight-circle::before {
+
+    content: "♡";
+
+    font-size: 45px;
+
+    line-height: 1;
+
+    position: absolute;
+
+}
+
+
+
+.add-highlight .highlight-circle::after {
+
+    content: "+";
+
+    position: absolute;
+
+    right: -6px;
+
+    bottom: -6px;
+
+    width: 27px;
+
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: var(--accent);
+
+    color: white;
+
+    border: 3px solid var(--card);
+
+    border-radius: 50%;
+
+    font-size: 19px;
+
+    font-weight: bold;
+
+    line-height: 1;
+
+    box-shadow: 0 2px 6px #00000020;
+
+}
+
+
+
+.add-highlight:hover .highlight-circle {
+
+    background: #ffd9e9;
+
+    transform: translateY(-3px);
+
+}
+
+
+
+/* HIGHLIGHT PHOTO VIEWER */
+
+
+
+.highlight-viewer {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background: #000000e8;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+}
+
+
+
+.highlight-viewer.show {
+
+    display: flex;
+
+}
+
+
+
+.highlight-viewer img {
+
+    max-width: 100%;
+
+    max-height: 85vh;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+}
+
+
+
+.highlight-close {
+
+    position: absolute;
+
+    top: 20px;
+
+    right: 22px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ffffff25;
+
+    color: white;
+
+    font-size: 25px;
+
+}
+
+
+
+/* DELETE PHOTO BUTTON */
+
+
+
+.highlight-delete {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border: none;
+
+    border-radius: 25px;
+
+    background: #e94d78;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    box-shadow: 0 3px 12px #00000035;
+
+    transition: .2s;
+
+}
+
+
+
+.highlight-delete:hover {
+
+    background: #d93665;
+
+    transform: translateX(-50%) scale(1.04);
+
+}
+
+
+
+/* SECTION */
+
+
+
+.section-heading {
+
+    font-size: 17px;
+
+    margin-bottom: 14px;
+
+}
+
+
+
+.section {
+
+    margin-bottom: 28px;
+
+}
+
+
+
+/* HAPPINESS CORNER */
+
+
+
+.happiness-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    text-align: center;
+
+    padding: 35px 25px;
+
+    border-radius: 18px;
+
+    background: linear-gradient(135deg, #ffe5f0, #fff0f6);
+
+    border: 1px solid var(--border);
+
+}
+
+
+
+.happiness-decoration {
+
+    font-size: 38px;
+
+    color: var(--accent);
+
+    margin-bottom: 12px;
+
+}
+
+
+
+.happiness-label {
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+}
+
+
+
+.happiness-card h2 {
+
+    font-size: 27px;
+
+    margin: 12px 0;
+
+}
+
+
+
+.happiness-intro {
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+
+.surprise-message {
+
+    max-width: 450px;
+
+    min-height: 75px;
+
+    margin: 23px auto;
+
+    padding: 20px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: rgba(255,255,255,.85);
+
+    border-radius: 13px;
+
+    color: #d63370;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    line-height: 1.6;
+
+    transition: opacity .18s ease;
+
+}
+
+
+
+.smile-button {
+
+    background: var(--accent);
+
+    color: white;
+
+    border: none;
+
+    padding: 13px 23px;
+
+    border-radius: 25px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition: .2s;
+
+}
+
+
+
+.smile-button:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+
+.happiness-footer {
+
+    margin-top: 20px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+
+/* FEATURE CARDS */
+
+
+
+.feature-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 17px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    padding: 13px;
+
+    text-decoration: none;
+
+    color: var(--text);
+
+    transition: transform .2s, border-color .2s;
+
+}
+
+
+
+.feature-card:hover {
+
+    transform: translateY(-2px);
+
+    border-color: var(--accent);
+
+}
+
+
+
+.feature-card img {
+
+    width: 105px;
+
+    height: 95px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+}
+
+
+
+.feature-info h3 {
+
+    font-size: 15px;
+
+    margin-bottom: 7px;
+
+}
+
+
+
+.feature-info p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+
+.feature-arrow {
+
+    margin-left: auto;
+
+    color: var(--accent);
+
+    font-size: 20px;
+
+}
+
+
+
+/* PERSONAL MESSAGE */
+
+
+
+.love-message {
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 17px;
+
+    padding: 22px;
+
+    line-height: 1.7;
+
+    font-size: 13px;
+
+}
+
+
+
+.love-message p {
+
+    color: var(--muted);
+
+}
+
+
+
+.signature {
+
+    color: var(--accent) !important;
+
+    margin-top: 12px;
+
+    font-weight: bold;
+
+}
+
+
+
+/* BOTTOM NAVIGATION */
+
+
+
+.bottom-nav {
+
+    display: none;
+
+}
+
+
+
+/* FOOTER */
+
+
+
+.footer {
+
+    text-align: center;
+
+    padding: 20px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+
+/* MOBILE */
+
+
+
+@media(max-width: 700px) {
+
+
+
+    .container {
+
+        width: 92%;
+
+        margin: 0 auto 100px;
+
+    }
+
+
+
+    .profile-cover {
+
+        height: 157.5px;
+
+    }
+
+
+
+    .cover-label {
+
+        bottom: 12px;
+
+        right: 12px;
+
+        font-size: 10px;
+
+        padding: 7px 10px;
+
+    }
+
+
+
+    .profile-details {
+
+        width: 100%;
+
+        padding: 0 15px 18px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+        gap: 0;
+
+    }
+
+
+
+    .profile-photo {
+
+        width: 140px;
+
+        height: 140px;
+
+        margin-top: -72px;
+
+    }
+
+
+
+    .profile-text {
+
+        padding: 8px 0 14px;
+
+    }
+
+
+
+    .profile-text h1 {
+
+        font-size: 23px;
+
+    }
+
+
+
+    .profile-text p {
+
+        font-size: 12px;
+
+    }
+
+
+
+    .profile-actions {
+
+        padding: 0;
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+
+
+    .profile-message-btn {
+
+        justify-content: center;
+
+        flex: 1;
+
+        max-width: 220px;
+
+    }
+
+
+
+    .highlights-section {
+
+        width: 100%;
+
+        padding: 17px 15px;
+
+    }
+
+
+
+    /* BIGGER PORTRAIT HIGHLIGHTS ON MOBILE */
+
+
+
+    .highlights-list {
+
+        gap: 7px;
+
+    }
+
+
+
+    .highlight-circle {
+
+        width: 105px;
+
+        height: 140px;
+
+    }
+
+
+
+    .highlight-item {
+
+        flex-basis: 105px;
+
+        width: 105px;
+
+    }
+
+
+
+    .add-highlight .highlight-circle::before {
+
+        font-size: 42px;
+
+    }
+
+
+
+    .add-highlight .highlight-circle::after {
+
+        width: 25px;
+
+        height: 25px;
+
+        font-size: 17px;
+
+    }
+
+
+
+    .happiness-card {
+
+        padding: 28px 17px;
+
+    }
+
+
+
+    .happiness-card h2 {
+
+        font-size: 23px;
+
+    }
+
+
+
+    .surprise-message {
+
+        font-size: 15px;
+
+    }
+
+
+
+    .feature-card {
+
+        gap: 12px;
+
+        padding: 10px;
+
+    }
+
+
+
+    .feature-card img {
+
+        width: 85px;
+
+        height: 85px;
+
+    }
+
+
+
+    .feature-info h3 {
+
+        font-size: 13px;
+
+    }
+
+
+
+    .feature-info p {
+
+        font-size: 11px;
+
+    }
+
+
+
+    /* SMALL & GIRLY NAVIGATION */
+
+
+
+    .bottom-nav {
+
+        display: flex;
+
+        position: fixed;
+
+        left: 50%;
+
+        bottom: calc(12px + env(safe-area-inset-bottom));
+
+        transform: translateX(-50%);
+
+        width: min(270px, 85%);
+
+        min-height: 58px;
+
+        padding: 6px 9px;
+
+        background: rgba(255, 255, 255, .94);
+
+        backdrop-filter: blur(15px);
+
+        border: 1px solid #f7dce8;
+
+        border-radius: 22px;
+
+        box-shadow: 0 5px 22px rgba(219, 133, 171, .18);
+
+        justify-content: space-around;
+
+        align-items: center;
+
+        gap: 5px;
+
+        z-index: 20;
+
+    }
+
+
+
+    .bottom-nav a {
+
+        flex: 1;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 2px;
+
+        padding: 5px 3px;
+
+        border-radius: 14px;
+
+        color: #b5a1ad;
+
+        text-decoration: none;
+
+        font-size: 9px;
+
+        font-weight: 600;
+
+        transition: .2s ease;
+
+    }
+
+
+
+    .bottom-nav span {
+
+        width: 28px;
+
+        height: 25px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 18px;
+
+        border-radius: 10px;
+
+        transition: .2s ease;
+
+    }
+
+
+
+    .bottom-nav a.active {
+
+        color: #ed6fa6;
+
+        background: #fff0f6;
+
+    }
+
+
+
+    .bottom-nav a.active span {
+
+        background: #ffffff;
+
+        box-shadow: 0 2px 7px rgba(244, 119, 173, .12);
+
+        transform: translateY(-1px);
+
+    }
+
+
+
+    .bottom-nav a:active {
+
+        transform: scale(.94);
+
+    }
+
+}
+
+
+
+@media(max-width: 350px) {
+
+
+
+    .profile-cover {
+
+        height: 127.5px;
+
+    }
+
+
+
+    .profile-photo {
+
+        width: 125px;
+
+        height: 125px;
+
+    }
+
+
+
+    .profile-text h1 {
+
+        font-size: 21px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+
+<main class="container">
+
+
+
+    <!-- PROFILE -->
+
+
+
+    <section class="profile-page">
+
+
+
+        <!-- CLICKABLE FULL-WIDTH COVER PHOTO -->
+
+
+
+        <div
+
+            class="profile-cover"
+
+            onclick="openBanner()"
+
+            role="button"
+
+            tabindex="0"
+
+            aria-label="Open banner image">
+
+
+
+            <span class="cover-label">
+
+                ♡ A little world made for you
+
+            </span>
+
+
+
+        </div>
+
+
+
+        <!-- PROFILE DETAILS -->
+
+
+
+        <div class="profile-details">
+
+
+
+            <img
+
+                src="assets/images/nel.jpg"
+
+                alt="Nelian's profile"
+
+                class="profile-photo"
+
+                width="175"
+
+                height="175"
+
+                fetchpriority="high"
+
+                onerror="this.src='assets/images/cutepic.jpg'"
+
+            >
+
+
+
+            <div class="profile-text">
+
+
+
+                <h1>Nelian ♡</h1>
+
+
+
+                <p>
+
+                    My favorite person in the world.🌷
+
+                </p>
+
+
+
+            </div>
+
+
+
+            <div class="profile-actions">
+
+
+
+                <a href="chat.html" class="profile-message-btn">
+
+                    ✉ Message
+
+                </a>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <!-- HIGHLIGHTS -->
+
+
+
+        <section class="highlights-section">
+
+
+
+            <h3 class="highlights-title">Highlights ♡</h3>
+
+
+
+            <div class="highlights-list" id="highlightsList">
+
+
+
+                <label class="highlight-item add-highlight">
+
+
+
+                    <div class="highlight-circle"></div>
+
+
+
+                    <span>Add photo</span>
+
+
+
+                    <input
+
+                        type="file"
+
+                        id="highlightUpload"
+
+                        accept="image/*"
+
+                        multiple
+
+                        hidden
+
+                    >
+
+
+
+                </label>
+
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+    </section>
+
+
+
+    <!-- HAPPINESS CORNER -->
+
+
+
+    <section class="section">
+
+
+
+        <div class="happiness-card">
+
+
+
+            <div class="happiness-decoration">♡</div>
+
+
+
+            <span class="happiness-label">
+
+                A LITTLE REMINDER FOR YOU
+
+            </span>
+
+
+
+            <h2>Hey, Beautiful! 🌷</h2>
+
+
+
+            <p class="happiness-intro">
+
+                Whenever you need a little smile,
+
+                there's something waiting for you here.
+
+            </p>
+
+
+
+            <div
+
+                class="surprise-message"
+
+                id="surpriseMessage"
+
+                aria-live="polite">
+
+
+
+                You are one of my favorite reasons to smile. 💗
+
+
+
+            </div>
+
+
+
+            <button
+
+                class="smile-button"
+
+                onclick="giveSmile()">
+
+
+
+                Click me bebe ko ♡
+
+
+
+            </button>
+
+
+
+            <div class="happiness-footer">
+
+                Sending you unlimited hugs and kisses! 💋
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+    <!-- GAMES -->
+
+
+
+    <section class="section">
+
+
+
+        <h2 class="section-heading">Something fun ♡</h2>
+
+
+
+        <a href="games.html" class="feature-card">
+
+
+
+            <img
+
+                src="assets/images/cutepic.jpg"
+
+                alt="Game center"
+
+                width="105"
+
+                height="95"
+
+                loading="lazy"
+
+                decoding="async"
+
+            >
+
+
+
+            <div class="feature-info">
+
+                <h3>Our Game Center</h3>
+
+                <p>Play, explore, and discover something special.</p>
+
+            </div>
+
+
+
+            <span class="feature-arrow">›</span>
+
+
+
+        </a>
+
+
+
+    </section>
+
+
+
+    <!-- MEMORIES -->
+
+
+
+    <section class="section">
+
+
+
+        <h2 class="section-heading">Our memories 📸</h2>
+
+
+
+        <a href="memories.html" class="feature-card">
+
+
+
+            <img
+
+                src="assets/images/background.jpg"
+
+                alt="Our memories"
+
+                width="105"
+
+                height="95"
+
+                loading="lazy"
+
+                decoding="async"
+
+            >
+
+
+
+            <div class="feature-info">
+
+                <h3>Little Moments</h3>
+
+                <p>Keep our favorite moments close to your heart.</p>
+
+            </div>
+
+
+
+            <span class="feature-arrow">›</span>
+
+
+
+        </a>
+
+
+
+    </section>
+
+
+
+    <!-- PERSONAL MESSAGE -->
+
+
+
+    <section class="section">
+
+
+
+        <h2 class="section-heading">A little message 💗</h2>
+
+
+
+        <div class="love-message">
+
+
+
+            <p>
+
+                This little world was made especially for you, Nelian.
+
+                Every page has something from me to you.
+
+                Whenever you visit, remember that Rodnie is always here.
+
+            </p>
+
+
+
+            <p class="signature">
+
+                With love, Rodnie ♡
+
+            </p>
+
+
+
+        </div>
+
+
+
+    </section>
+
+
+
+</main>
+
+
+
+<!-- FOOTER -->
+
+
+
+<footer class="footer">
+
+    Made with love, just for Nelian. 💗
+
+    <br>
+
+    © 2026 Nelian's World
+
+</footer>
+
+
+
+<!-- MOBILE NAVIGATION -->
+
+
+
+<nav class="bottom-nav">
+
+
+
+    <a href="homepage.html" class="active">
+
+        <span>⌂</span>
+
+        Home
+
+    </a>
+
+
+
+    <a href="games.html">
+
+        <span>🎮</span>
+
+        Games
+
+    </a>
+
+
+
+    <a href="memories.html">
+
+        <span>♡</span>
+
+        Memories
+
+    </a>
+
+
+
+</nav>
+
+
+
+<!-- HIGHLIGHT PHOTO VIEWER -->
+
+
+
+<div class="highlight-viewer" id="highlightViewer">
+
+
+
+    <button
+
+        class="highlight-close"
+
+        onclick="closeHighlight()">
+
+        ×
+
+    </button>
+
+
+
+    <img id="viewerImage" src="" alt="Selected highlight">
+
+
+
+    <button
+
+        class="highlight-delete"
+
+        onclick="deleteHighlight()">
+
+        🗑 Delete photo
+
+    </button>
+
+
+
+</div>
+
+
+
+<!-- BANNER PHOTO VIEWER -->
+
+
+
+<div class="highlight-viewer" id="bannerViewer">
+
+
+
+    <button
+
+        class="highlight-close"
+
+        onclick="closeBanner()">
+
+        ×
+
+    </button>
+
+
+
+    <img
+
+        src="assets/images/background.jpg"
+
+        alt="Nelian's banner image">
+
+
+
+</div>
+
+
+
+<script>
+
+
+
+/* HAPPINESS CORNER */
+
+
+
+const sweetMessages = [
+
+
+
+    "You are one of my favorite reasons to smile. 💗",
+
+    "I hope you know how precious you are to me. 🥰",
+
+    "If I could choose again, I would still choose you. 💕",
+
+    "Don't forget to smile today, beautiful! 🌷",
+
+    "You make my ordinary days feel special. ❤️",
+
+    "Sending you a thousand virtual hugs! 🤗",
+
+    "You deserve all the happiness in this world. 💖",
+
+    "Just a reminder: someone is always thinking of you. 💌",
+
+    "Your smile is my favorite view. 😊",
+
+    "I may not be beside you right now, but my heart is always with you. 💗",
+
+    "I hope something beautiful happens to you today. 🌸",
+
+    "You don't have to be perfect to be wonderful. 💕",
+
+    "Take a deep breath. You're doing better than you think. 🫶",
+
+    "If today feels difficult, remember that you are loved. ❤️",
+
+    "One smile from you can make my whole day better. 😊"
+
+
+
+];
+
+
+
+let previousMessage = -1;
+
+
+
+function giveSmile() {
+
+
+
+    let randomIndex;
+
+
+
+    do {
+
+
+
+        randomIndex = Math.floor(
+
+            Math.random() * sweetMessages.length
+
+        );
+
+
+
+    } while (
+
+        randomIndex === previousMessage &&
+
+        sweetMessages.length > 1
+
+    );
+
+
+
+    previousMessage = randomIndex;
+
+
+
+    const message = document.getElementById("surpriseMessage");
+
+
+
+    message.style.opacity = "0";
+
+
+
+    setTimeout(() => {
+
+
+
+        message.textContent = sweetMessages[randomIndex];
+
+        message.style.opacity = "1";
+
+
+
+    }, 180);
+
+
+
+}
+
+
+
+
+
+/* PHOTO HIGHLIGHTS */
+
+
+
+const highlightUpload = document.getElementById("highlightUpload");
+
+const highlightsList = document.getElementById("highlightsList");
+
+const highlightViewer = document.getElementById("highlightViewer");
+
+const viewerImage = document.getElementById("viewerImage");
+
+
+
+const HIGHLIGHT_KEY = "nelianHighlights";
+
+
+
+let highlights = [];
+
+let selectedHighlightIndex = -1;
+
+
+
+try {
+
+
+
+    const savedHighlights = JSON.parse(
+
+        localStorage.getItem(HIGHLIGHT_KEY) || "[]"
+
+    );
+
+
+
+    if (Array.isArray(savedHighlights)) {
+
+
+
+        highlights = savedHighlights.filter(photo =>
+
+            photo &&
+
+            typeof photo.image === "string" &&
+
+            photo.image.startsWith("data:image/")
+
+        );
+
+
+
+    }
+
+
+
+} catch (error) {
+
+
+
+    highlights = [];
+
+
+
+}
+
+
+
+
+
+/* DISPLAY SAVED HIGHLIGHTS */
+
+
+
+function displayHighlights() {
+
+
+
+    highlightsList.querySelectorAll(".saved-highlight").forEach(item => {
+
+        item.remove();
+
+    });
+
+
+
+    highlights.forEach((photo, index) => {
+
+
+
+        const button = document.createElement("button");
+
+        button.className = "highlight-item saved-highlight";
+
+        button.type = "button";
+
+
+
+        const circle = document.createElement("div");
+
+        circle.className = "highlight-circle";
+
+
+
+        const img = document.createElement("img");
+
+        img.src = photo.image;
+
+        img.alt = "Highlight photo";
+
+
+
+        circle.appendChild(img);
+
+        button.appendChild(circle);
+
+
+
+        button.addEventListener("click", () => {
+
+            openHighlight(index);
+
+        });
+
+
+
+        highlightsList.appendChild(button);
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+/* COMPRESS UPLOADED PHOTOS */
+
+
+
+function compressHighlight(file) {
+
+
+
+    return new Promise((resolve, reject) => {
+
+
+
+        const reader = new FileReader();
+
+
+
+        reader.onload = function(event) {
+
+
+
+            const image = new Image();
+
+
+
+            image.onload = function() {
+
+
+
+                const canvas = document.createElement("canvas");
+
+
+
+                const maxSize = 500;
+
+
+
+                const scale = Math.min(
+
+                    1,
+
+                    maxSize / Math.max(image.width, image.height)
+
+                );
+
+
+
+                canvas.width = Math.round(image.width * scale);
+
+                canvas.height = Math.round(image.height * scale);
+
+
+
+                const context = canvas.getContext("2d");
+
+
+
+                context.drawImage(
+
+                    image,
+
+                    0,
+
+                    0,
+
+                    canvas.width,
+
+                    canvas.height
+
+                );
+
+
+
+                resolve(
+
+                    canvas.toDataURL("image/jpeg", 0.75)
+
+                );
+
+
+
+            };
+
+
+
+            image.onerror = reject;
+
+            image.src = event.target.result;
+
+
+
+        };
+
+
+
+        reader.onerror = reject;
+
+        reader.readAsDataURL(file);
+
+
+
+    });
+
+
+
+}
+
+
+
+
+
+/* UPLOAD PHOTOS */
+
+
+
+highlightUpload.addEventListener("change", async function() {
+
+
+
+    const files = Array.from(this.files || []);
+
+
+
+    for (const file of files) {
+
+
+
+        if (!file.type.startsWith("image/")) {
+
+            continue;
+
+        }
+
+
+
+        try {
+
+
+
+            const compressedImage = await compressHighlight(file);
+
+
+
+            const newHighlight = {
+
+                image: compressedImage,
+
+                name: "Memory " + (highlights.length + 1)
+
+            };
+
+
+
+            highlights.push(newHighlight);
+
+
+
+            try {
+
+
+
+                localStorage.setItem(
+
+                    HIGHLIGHT_KEY,
+
+                    JSON.stringify(highlights)
+
+                );
+
+
+
+            } catch (storageError) {
+
+
+
+                highlights.pop();
+
+
+
+                alert(
+
+                    "Your browser storage is full. " +
+
+                    "Try uploading fewer photos."
+
+                );
+
+
+
+                break;
+
+
+
+            }
+
+
+
+        } catch (error) {
+
+
+
+            alert("Unable to upload this photo. Please try another image.");
+
+
+
+        }
+
+
+
+    }
+
+
+
+    displayHighlights();
+
+    this.value = "";
+
+
+
+});
+
+
+
+
+
+/* OPEN PHOTO */
+
+
+
+function openHighlight(index) {
+
+
+
+    selectedHighlightIndex = index;
+
+
+
+    viewerImage.src = highlights[index].image;
+
+    highlightViewer.classList.add("show");
+
+
+
+}
+
+
+
+
+
+/* DELETE PHOTO */
+
+
+
+function deleteHighlight() {
+
+
+
+    if (
+
+        selectedHighlightIndex < 0 ||
+
+        selectedHighlightIndex >= highlights.length
+
+    ) {
+
+        return;
+
+    }
+
+
+
+    const confirmDelete = confirm(
+
+        "Are you sure you want to delete this photo?"
+
+    );
+
+
+
+    if (!confirmDelete) {
+
+        return;
+
+    }
+
+
+
+    const deletedPhoto = highlights.splice(selectedHighlightIndex, 1)[0];
+
+
+
+    try {
+
+
+
+        localStorage.setItem(
+
+            HIGHLIGHT_KEY,
+
+            JSON.stringify(highlights)
+
+        );
+
+
+
+        selectedHighlightIndex = -1;
+
+        closeHighlight();
+
+        displayHighlights();
+
+
+
+    } catch (error) {
+
+
+
+        highlights.splice(
+
+            selectedHighlightIndex,
+
+            0,
+
+            deletedPhoto
+
+        );
+
+
+
+        alert("Unable to delete the photo. Please try again.");
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* CLOSE PHOTO */
+
+
+
+function closeHighlight() {
+
+
+
+    highlightViewer.classList.remove("show");
+
+    viewerImage.src = "";
+
+    selectedHighlightIndex = -1;
+
+
+
+}
+
+
+
+highlightViewer.addEventListener("click", function(event) {
+
+
+
+    if (event.target === highlightViewer) {
+
+        closeHighlight();
+
+    }
+
+
+
+});
+
+
+
+document.addEventListener("keydown", function(event) {
+
+
+
+    if (event.key === "Escape") {
+
+        closeHighlight();
+
+        closeBanner();
+
+    }
+
+
+
+});
+
+
+
+
+
+/* BANNER PHOTO VIEWER */
+
+
+
+const bannerViewer = document.getElementById("bannerViewer");
+
+
+
+function openBanner() {
+
+    bannerViewer.classList.add("show");
+
+}
+
+
+
+function closeBanner() {
+
+    bannerViewer.classList.remove("show");
+
+}
+
+
+
+bannerViewer.addEventListener("click", function(event) {
+
+
+
+    if (event.target === bannerViewer) {
+
+        closeBanner();
+
+    }
+
+
+
+});
+
+
+
+/* OPEN BANNER USING ENTER OR SPACE */
+
+
+
+document.querySelector(".profile-cover").addEventListener("keydown", function(event) {
+
+
+
+    if (event.key === "Enter" || event.key === " ") {
+
+        event.preventDefault();
+
+        openBanner();
+
+    }
+
+
+
+});
+
+
+
+
+
+/* LOAD HIGHLIGHTS */
+
+
+
+displayHighlights();
+
+
+
+</script>
+
+
+
+
+<script type="module">
+import { initializeApp, getApps, getApp }
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+
+import { getAuth, onAuthStateChanged }
+from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {
+    getDatabase,
+    ref,
+    query,
+    orderByChild,
+    startAt,
+    get,
+    onChildAdded
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAVd9A7JmPReIibkvVVZY8n49RLoX42Q78",
+    authDomain: "rodnie-and-nelian-chat.firebaseapp.com",
+    databaseURL: "https://rodnie-and-nelian-chat-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "rodnie-and-nelian-chat",
+    storageBucket: "rodnie-and-nelian-chat.firebasestorage.app",
+    messagingSenderId: "887404308542",
+    appId: "1:887404308542:web:3d11950febe81f4179096f",
+    measurementId: "G-FLBFDLYBF9"
+};
+
+const RODNIE_UID = "wCLxThY1P1W7sQNxCnpCD1mxB8i1";
+const NELIAN_UID = "7YToaU3EIxglcKUd4nYDEPj9Rnx2";
+
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase(app);
+const messagesRef = ref(database, "messages");
+
+let syncListener = null;
+let syncDatabase = null;
+
+function openMessageCache() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open("NelianChatCache", 1);
+
+        request.onupgradeneeded = function(event) {
+            const db = event.target.result;
+
+            if (!db.objectStoreNames.contains("messages")) {
+                const store = db.createObjectStore("messages", { keyPath: "id" });
+                store.createIndex("timestamp", "timestamp", { unique: false });
+            }
+
+            if (!db.objectStoreNames.contains("meta")) {
+                db.createObjectStore("meta", { keyPath: "key" });
+            }
+        };
+
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error);
+    });
+}
+
+function readMeta(db, key) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction("meta", "readonly");
+        const request = transaction.objectStore("meta").get(key);
+
+        request.onsuccess = () => resolve(request.result?.value ?? null);
+        request.onerror = () => reject(request.error);
+    });
+}
+
+function writeInitialHistory(db, messages) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(["messages", "meta"], "readwrite");
+        const messageStore = transaction.objectStore("messages");
+        const metaStore = transaction.objectStore("meta");
+
+        let latestTimestamp = 0;
+
+        messages.forEach(message => {
+            messageStore.put(message);
+            latestTimestamp = Math.max(latestTimestamp, message.timestamp || 0);
+        });
+
+        metaStore.put({ key: "lastTimestamp", value: latestTimestamp });
+        metaStore.put({ key: "historyComplete", value: true });
+
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+        transaction.onabort = () => reject(transaction.error);
+    });
+}
+
+function saveNewMessage(db, message) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction(["messages", "meta"], "readwrite");
+
+        transaction.objectStore("messages").put(message);
+
+        const metaStore = transaction.objectStore("meta");
+        const request = metaStore.get("lastTimestamp");
+
+        request.onsuccess = function() {
+            const previous = request.result?.value ?? 0;
+
+            metaStore.put({
+                key: "lastTimestamp",
+                value: Math.max(previous, message.timestamp || 0)
+            });
+        };
+
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+        transaction.onabort = () => reject(transaction.error);
+    });
+}
+
+function validMessage(snapshot) {
+    const message = {
+        id: snapshot.key,
+        ...snapshot.val()
+    };
+
+    if (
+        !message.id ||
+        !message.timestamp ||
+        ![RODNIE_UID, NELIAN_UID].includes(message.senderUid)
+    ) {
+        return null;
+    }
+
+    return message;
+}
+
+async function startBackgroundMessageSync(user) {
+    if (syncListener) {
+        syncListener();
+        syncListener = null;
+    }
+
+    if (
+        !user ||
+        (user.uid !== RODNIE_UID && user.uid !== NELIAN_UID)
+    ) {
+        return;
+    }
+
+    try {
+        const db = await openMessageCache();
+        syncDatabase = db;
+
+        const historyComplete = await readMeta(db, "historyComplete");
+
+        // First visit on this device: download and save the full history once.
+        if (historyComplete !== true) {
+            const fullHistoryQuery = query(
+                messagesRef,
+                orderByChild("timestamp")
+            );
+
+            const snapshot = await get(fullHistoryQuery);
+            const allMessages = [];
+
+            snapshot.forEach(child => {
+                const message = validMessage(child);
+                if (message) allMessages.push(message);
+            });
+
+            allMessages.sort((a, b) => a.timestamp - b.timestamp);
+
+            await writeInitialHistory(db, allMessages);
+            console.log("Full chat history saved on this device 💗");
+        }
+
+        const lastTimestamp = await readMeta(db, "lastTimestamp");
+
+        // Keep listening while the homepage remains open.
+        // startAt includes the last saved timestamp to avoid missing
+        // messages that arrive during a sync or share the same millisecond.
+        const liveQuery = query(
+            messagesRef,
+            orderByChild("timestamp"),
+            startAt(lastTimestamp ?? 0)
+        );
+
+        syncListener = onChildAdded(
+            liveQuery,
+            async snapshot => {
+                const message = validMessage(snapshot);
+                if (!message) return;
+
+                try {
+                    await saveNewMessage(db, message);
+                } catch (error) {
+                    console.error("Unable to save message locally:", error);
+                }
+            },
+            error => {
+                console.error("Background message listener error:", error);
+            }
+        );
+
+        console.log("Background chat syncing is active 💗");
+
+    } catch (error) {
+        console.error("Background chat sync could not start:", error);
+    }
+}
+
+onAuthStateChanged(auth, user => {
+    startBackgroundMessageSync(user);
+});
+</script>
+
+</body>
+
+</html>
